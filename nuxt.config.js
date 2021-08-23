@@ -7,15 +7,16 @@ module.exports = {
     htmlAttrs: {
       lang: 'zh-CN'
     },
-    title: '江苏蚂蚁云数据技术有限公司',
+    title: '外贸批发',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: '立足政务互联网和工业信息化互联网两大领域；整合行业生态合作伙伴技术资源，打造具有蚂蚁云特色的互联网+政务和互联网+工业信息化解决方案' },
-      { hid: 'keywords', name: 'keywords', content: '云计算、大数据、智慧城市、软件定制开发' }
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
+      { hid: 'description', name: 'description', content: '我是描述' },
+      { hid: 'keywords', name: 'keywords', content: '我是关键词' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' },
     ]
   },
   // server: {
@@ -33,6 +34,8 @@ module.exports = {
     'bootstrap/dist/css/bootstrap.css',
     'bootstrap-vue/dist/bootstrap-vue.css',
     '~/static/css/animate.css',
+    '~/static/css/style.css',
+    '~/static/css/font-awesome.min.css',
   ],
   /*
   ** Plugins to load before mounting the App

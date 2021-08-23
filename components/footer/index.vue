@@ -1,6 +1,6 @@
 <template>
   <footer class="text-center py-2">
-    <a href="https://beian.miit.gov.cn" target="_blank">Copyright© 2020  苏ICP备19010036号-1</a>
+    <!-- <a href="https://beian.miit.gov.cn" target="_blank">Copyright© 2020  苏ICP备19010036号-1</a> -->
   </footer>
 </template>
 
