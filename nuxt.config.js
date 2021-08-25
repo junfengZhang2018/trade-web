@@ -17,6 +17,10 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' },
+    ],
+    script: [
+      { src: '/js/jquery-1.12.0.min.js' },
+      { src: '/js/bootstrap.min.js' }
     ]
   },
   // server: {
@@ -31,18 +35,17 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    'bootstrap/dist/css/bootstrap.css',
-    'bootstrap-vue/dist/bootstrap-vue.css',
     '~/static/css/animate.css',
-    '~/static/css/style.css',
     '~/static/css/font-awesome.min.css',
+    '~/static/css/bootstrap.min.css',
+    '~/static/css/style.css',
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     {src: '@/plugins/vue-awesome-swiper', ssr: false},
-    '@/plugins/bootstrap-vue'
+    // '@/plugins/bootstrap-vue'
   ],
   /**
    * 关闭遥感采集

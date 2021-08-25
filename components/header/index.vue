@@ -278,10 +278,10 @@
                         <div class="main-menu">
                             <nav>
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="shop.html">Shop</a></li>
-                                    <li><a href="contact.html">contact</a></li>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/about">About</a></li>
+                                    <li><a href="/shop">Shop</a></li>
+                                    <li><a href="/contact">contact</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -316,65 +316,7 @@
 export default {
     data() {
         return {
-            showCollaps: false,
-            showNavbarBg: false,
-            showDrop: false,
-            navBarList: [
-                { nav: "网站首页", link: "/", children: [] },
-                {
-                    nav: "产品解决方案",
-                    link: "/product",
-                    children: [
-                        { nav: "云计算", link: "/product", children: [] },
-                        { nav: "大数据", link: "/product", children: [] },
-                    ],
-                },
-                {
-                    nav: "行业解决方案",
-                    link: "/business",
-                    children: [
-                        {
-                            nav: "互联网+政务",
-                            link: "/business/1",
-                            children: [],
-                        },
-                        {
-                            nav: "互联网+企业",
-                            link: "/business/2",
-                            children: [],
-                        },
-                        { nav: "智慧城市", link: "/business/3", children: [] },
-                    ],
-                },
-                {
-                    nav: "技术与支持",
-                    link: "/technology",
-                    children: [
-                        { nav: "服务理念", link: "/technology", children: [] },
-                        { nav: "服务体系", link: "/technology", children: [] },
-                        { nav: "在线反馈", link: "/technology", children: [] },
-                    ],
-                },
-                // {nav: '主营业务', link: '/profession' , children: [
-                //   {nav: '业务聚焦', link: '/profession?index=0', children: []},
-                //   {nav: '云计算与大数据主要方向', link: '/profession?index=1', children: []}
-                // ]},
-                {
-                    nav: "关于我们",
-                    link: "/about",
-                    children: [
-                        { nav: "公司介绍", link: "/about", children: [] },
-                        { nav: "企业文化", link: "/about", children: [] },
-                        { nav: "荣誉资质", link: "/about", children: [] },
-                        // {nav: '公司新闻', link: '/about', children: []},
-                        { nav: "联系我们", link: "/about", children: [] },
-                    ],
-                },
-                // {nav: '公司客户', link: '/client' , children: [
-                //   {nav: '企业客户', link: '/client', children: []},
-                //   {nav: '政府客户', link: '/client', children: []}
-                // ]},
-            ],
+
         };
     },
     mounted() {
@@ -384,7 +326,7 @@ export default {
         // window.addEventListener("scroll", this.handleWindowScroll);
     },
     beforeDestroy() {
-        window.removeEventListener("scroll", this.handleWindowScroll);
+        // window.removeEventListener("scroll", this.handleWindowScroll);
     },
     methods: {
         // 导航栏点击事件

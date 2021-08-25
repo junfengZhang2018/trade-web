@@ -1,10 +1,11 @@
 <template>
   <div>
-    <!-- <Product />
+    <Product />
     <Business />
     <About />
     <Partner />
-    <Client /> -->
+    <Client />
+    
   </div>
 </template>
 
