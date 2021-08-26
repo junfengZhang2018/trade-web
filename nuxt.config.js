@@ -35,10 +35,11 @@ module.exports = {
   ** Global CSS
   */
   css: [
-    '~/static/css/animate.css',
+    // '~/static/css/animate.css',
     '~/static/css/font-awesome.min.css',
     '~/static/css/bootstrap.min.css',
     '~/static/css/style.css',
+    '~/static/css/responsive.css',
   ],
   /*
   ** Plugins to load before mounting the App

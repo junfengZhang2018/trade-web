@@ -58,7 +58,7 @@
                     </div>
                     <div class="col-md-6 col-xs-12 col-sm-12">
                         <div class="header-top-right">
-                            <ul class="header-links hidden-xs">
+                            <!-- <ul class="header-links hidden-xs">
                                 <li>
                                     <a class="my-account" href="#"
                                         >My Account</a
@@ -95,7 +95,7 @@
                                         >
                                     </li>
                                 </ul>
-                            </div>
+                            </div> -->
                             <div class="language">
                                 <div class="current">
                                     <span>English</span>
@@ -313,6 +313,9 @@
 </template>
 
 <script>
+if (process.browser) {
+    require('@/assets/lib/jquery.meanmenu');
+}
 export default {
     data() {
         return {
@@ -364,6 +367,9 @@ export default {
 };
 </script>
 
+<style scoped>
+    @import '@/assets/styles/meanmenu.min.css';
+</style>
 <style lang="scss" scoped>
 // @import "@/assets/styles/variables.scss";
 

@@ -154,11 +154,7 @@
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 address">
                             Copyright &copy; 2021.Company name All rights
-                            reserved.<a
-                                target="_blank"
-                                href="http://sc.chinaz.com/moban/"
-                                >&#x7F51;&#x9875;&#x6A21;&#x677F;</a
-                            >
+                            reserved.
                         </div>
                     </div>
                 </div>
@@ -168,9 +164,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+	
+};
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+ 
 </style>
