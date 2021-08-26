@@ -20,7 +20,9 @@ module.exports = {
     ],
     script: [
       { src: '/js/jquery-1.12.0.min.js' },
-      { src: '/js/bootstrap.min.js' }
+      { src: '/js/bootstrap.min.js' },
+      { src: '/js/jquery.meanmenu.js' },
+      { src: '/js/main.js' },
     ]
   },
   // server: {
@@ -38,6 +40,7 @@ module.exports = {
     // '~/static/css/animate.css',
     '~/static/css/font-awesome.min.css',
     '~/static/css/bootstrap.min.css',
+    '~/static/css/meanmenu.min.css',
     '~/static/css/style.css',
     '~/static/css/responsive.css',
   ],

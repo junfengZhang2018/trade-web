@@ -313,9 +313,9 @@
 </template>
 
 <script>
-if (process.browser) {
-    require('@/assets/lib/jquery.meanmenu');
-}
+// if (process.browser) {
+//     require('@/assets/lib/jquery.meanmenu');
+// }
 export default {
     data() {
         return {
@@ -367,9 +367,6 @@ export default {
 };
 </script>
 
-<style scoped>
-    @import '@/assets/styles/meanmenu.min.css';
-</style>
 <style lang="scss" scoped>
 // @import "@/assets/styles/variables.scss";
 
