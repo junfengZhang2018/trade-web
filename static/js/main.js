@@ -1,10 +1,10 @@
 (function($) {
-    "use strict";
-
+  "use strict";
+  $(function() {
     /*----------------------------
      jQuery MeanMenu
     ------------------------------ */
-    jQuery('nav#dropdown').meanmenu();
+    // jQuery('nav#dropdown').meanmenu();
 
     /*----------------------------
      wow js active
@@ -29,7 +29,6 @@
     //     itemsMobile: [479, 1],
     // });
 
-
     /*----------------------------
     	slider
     ------------------------------ */
@@ -53,12 +52,16 @@
     /*---------------------
      countdown
     --------------------- */
-    $('[data-countdown]').each(function() {
-        var $this = $(this),
-            finalDate = $(this).data('countdown');
-        $this.countdown(finalDate, function(event) {
-            $this.html(event.strftime('<span class="cdown days"><span class="time-count">%-D</span> <p>Days</p></span> <span class="cdown hour"><span class="time-count">%-H</span> <p>Hour</p></span> <span class="cdown minutes"><span class="time-count">%M</span> <p>Min</p></span> <span class="cdown second"> <span><span class="time-count">%S</span> <p>Sec</p></span>'));
-        });
+    $("[data-countdown]").each(function() {
+      var $this = $(this),
+        finalDate = $(this).data("countdown");
+      $this.countdown(finalDate, function(event) {
+        $this.html(
+          event.strftime(
+            '<span class="cdown days"><span class="time-count">%-D</span> <p>Days</p></span> <span class="cdown hour"><span class="time-count">%-H</span> <p>Hour</p></span> <span class="cdown minutes"><span class="time-count">%M</span> <p>Min</p></span> <span class="cdown second"> <span><span class="time-count">%S</span> <p>Sec</p></span>'
+          )
+        );
+      });
     });
 
     /*------------------------------
@@ -169,7 +172,6 @@
     //     itemsMobile: [479, 3],
     // });
 
-
     /*------------------------------
     related owl
     ------------------------------ */
@@ -201,29 +203,39 @@
     /*-----------------
     meanmenu 
     -----------------*/
-    $('nav#mobile_menu_active').meanmenu({
+    // setTimeout(() => {
+      $("nav#mobile_menu_active").meanmenu({
         meanScreenWidth: "991",
-        meanMenuContainer: '.mobile-menu-area .container',
-    });
+        meanMenuContainer: ".mobile-menu-area .container"
+      });
+    // }, 1000);
 
     /*-----------------------
     cart-plus-minus-button 
     -------------------------*/
-    $(".cart-plus-minus").append('<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>');
+    $(".cart-plus-minus").append(
+      '<div class="dec qtybutton">-</div><div class="inc qtybutton">+</div>'
+    );
     $(".qtybutton").on("click", function() {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() == "+") {
-            var newVal = parseFloat(oldValue) + 1;
+      var $button = $(this);
+      var oldValue = $button
+        .parent()
+        .find("input")
+        .val();
+      if ($button.text() == "+") {
+        var newVal = parseFloat(oldValue) + 1;
+      } else {
+        // Don't allow decrementing below zero
+        if (oldValue > 0) {
+          var newVal = parseFloat(oldValue) - 1;
         } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
+          newVal = 0;
         }
-        $button.parent().find("input").val(newVal);
+      }
+      $button
+        .parent()
+        .find("input")
+        .val(newVal);
     });
 
     /*----------------------------
@@ -244,6 +256,5 @@
     /*----------------------------
 
     -----------------------------*/
-
-
+  });
 })(jQuery);

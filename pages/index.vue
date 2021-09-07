@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <!-- <Product />
+    <div>
+        <!-- <Product />
     <Business />
     <About />
     <Partner />
@@ -510,16 +510,18 @@
         <!-- service-area-end -->
 
   </div>
+
 </template>
 
 <script>
-import Product from '@/components/index/product'
-import Business from '@/components/index/business'
-import About from '@/components/index/about'
-import Partner from '@/components/index/partner'
-import Client from '@/components/index/client'
-if (process.browser) { // 在这里根据环境引入wow.js
-  var {WOW} = require('wowjs')
+// import Product from "@/components/index/product";
+// import Business from "@/components/index/business";
+// import About from "@/components/index/about";
+// import Partner from "@/components/index/partner";
+// import Client from "@/components/index/client";
+if (process.browser) {
+    // 在这里根据环境引入wow.js
+    var { WOW } = require("wowjs");
 }
 
 export default {
