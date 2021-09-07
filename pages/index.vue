@@ -526,11 +526,11 @@ if (process.browser) {
 
 export default {
   components: {
-    Product,
-    Business,
-    About,
-    Client,
-    Partner
+    // Product,
+    // Business,
+    // About,
+    // Client,
+    // Partner
   },
   data() {
     return {
