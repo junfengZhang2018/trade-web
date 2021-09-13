@@ -10,7 +10,7 @@ module.exports = {
     title: '外贸批发',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1' },
       { hid: 'description', name: 'description', content: '我是描述' },
       { hid: 'keywords', name: 'keywords', content: '我是关键词' }
     ],
