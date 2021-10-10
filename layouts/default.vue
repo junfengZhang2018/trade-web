@@ -20,6 +20,7 @@ import MyHeader from "@/components/header/index";
 import Carousel from "@/components/index/carousel";
 import Concat from "@/components/index/concat";
 import MyFooter from "@/components/footer/index";
+import axios from 'axios'
 if (process.browser) {
     // 在这里根据环境引入wow.js
     var { WOW } = require("wowjs");
@@ -37,7 +38,17 @@ export default {
             // 在页面mounted生命周期里面 根据环境实例化WOW
             // new WOW({}).init();
         }
+        this.testUrl()
     },
+    methods:{
+        testUrl(){
+            let data = {"content":"测试中文","langs":"en"};
+            axios.post(`http://zjf12.vaiwan.com/public/translate`,data)
+            .then(res=>{
+                console.log('res=>',res);            
+            })
+        }
+    }
 };
 </script>
 
