@@ -49,8 +49,12 @@ module.exports = {
   */
   plugins: [
     {src: '@/plugins/vue-awesome-swiper', ssr: false},
+    '@/plugins/i18n',
     // '@/plugins/bootstrap-vue'
   ],
+  router: {              // customize nuxt.js router (vue-router).
+    // middleware: 'i18n'   // middleware all pages of the application
+  },
   /**
    * 关闭遥感采集
    */
@@ -90,6 +94,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
+    vendor: ['vue-i18n'],
     extend (config, ctx) {
     },
     // analyze: true,

@@ -101,7 +101,7 @@
                                     <span>English</span>
                                 </div>
                                 <ul class="lang">
-                                    <li class="selected">
+                                    <li @click="toggle('en')" class="selected">
                                         <img
                                             src="img/lang/1.jpg"
                                             alt="en"
@@ -135,7 +135,7 @@
                                             ><span>Pilipino</span></a
                                         >
                                     </li>
-                                    <li>
+                                    <li @click="toggle('fr')">
                                         <img src="img/lang/5.jpg" alt="fr" /><a
                                             href="#"
                                             title=""
@@ -365,6 +365,11 @@ export default {
             const headerHeight = this.$refs.header.clientHeight;
             this.$store.commit("setHeaderHeight", headerHeight);
         },
+        toggle(lang) {
+            this.$store.commit('SET_LANG', lang)
+            localStorage.setItem('lang', lang);
+            this.$i18n.locale = lang;
+        }
     },
 };
 </script>

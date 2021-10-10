@@ -33,6 +33,11 @@ export default {
         Concat,
         MyFooter,
     },
+    created() {
+        if (process.browser) {
+            this.$i18n.locale = this.$store.state.locale || localStorage.getItem('lang') || 'en';
+        }
+    },
     mounted() {
         if (process.browser) {
             // 在页面mounted生命周期里面 根据环境实例化WOW

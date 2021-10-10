@@ -6,6 +6,7 @@
     <Partner />
     <Client /> -->
         <!-- banner-area-start -->
+        {{$t('about.title')}}
       <div class="banner-area hidden-sm hidden-xs">
           <div class="container">
               <div class="row">
@@ -579,7 +580,7 @@ export default {
         productList:[{
             title:'Dictum',
             name:'',
-            img:'img/singlepro/9.jpg',
+            img:'/img/singlepro/9.jpg',
             price:'7.00',
             oldPrice:'5.00'
         },{
