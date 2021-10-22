@@ -22,6 +22,7 @@ module.exports = {
       { src: '/js/jquery-1.12.0.min.js' },
       { src: '/js/bootstrap.min.js' },
       { src: '/js/jquery.meanmenu.js' },
+      { src: 'https://translate.google.cn/translate_a/element.js?hl=en' },
       { src: '/js/main.js' },
     ]
   },
@@ -49,7 +50,7 @@ module.exports = {
   */
   plugins: [
     {src: '@/plugins/vue-awesome-swiper', ssr: false},
-    '@/plugins/i18n',
+    // '@/plugins/i18n',
     // '@/plugins/bootstrap-vue'
   ],
   router: {              // customize nuxt.js router (vue-router).
@@ -94,7 +95,7 @@ module.exports = {
     /*
     ** You can extend webpack config here
     */
-    vendor: ['vue-i18n'],
+    // vendor: ['vue-i18n'],
     extend (config, ctx) {
     },
     // analyze: true,

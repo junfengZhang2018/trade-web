@@ -150,7 +150,7 @@ body {
     color: white;
 }
 .header-top-left {
-    margin: 10px 0;
+    margin: 13px 0;
 }
 .welcome-msg {} .default-msg {} .phone {
     margin-left: 10px;
@@ -4079,4 +4079,20 @@ scroll up
     background: #ff6464 none repeat scroll 0 0;
     border-color: #ff6464;
     color: white;
+}
+/* 隐藏谷歌插件 */
+.goog-te-banner-frame{
+    display: none;
+}
+body{
+    top: 0px !important;
+}
+#goog-gt-tt {
+    visibility: hidden !important;
+}
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+    -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 0) !important;
 }

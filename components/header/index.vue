@@ -37,6 +37,7 @@
       </div>
     </b-navbar>
   </header> -->
+  
     <header id="header">
         <div class="header-top">
             <div class="container">
@@ -56,6 +57,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-md-6 col-xs-12 col-sm-12">
                         <div class="header-top-right">
                             <!-- <ul class="header-links hidden-xs">
@@ -96,12 +98,12 @@
                                     </li>
                                 </ul>
                             </div> -->
-                            <div class="language">
+                            <!-- <div class="language">
                                 <div class="current">
                                     <span>English</span>
                                 </div>
                                 <ul class="lang">
-                                    <li @click="toggle('en')" class="selected">
+                                    <li class="selected">
                                         <img
                                             src="img/lang/1.jpg"
                                             alt="en"
@@ -135,7 +137,7 @@
                                             ><span>Pilipino</span></a
                                         >
                                     </li>
-                                    <li @click="toggle('fr')">
+                                    <li>
                                         <img src="img/lang/5.jpg" alt="fr" /><a
                                             href="#"
                                             title=""
@@ -150,6 +152,10 @@
                                         >
                                     </li>
                                 </ul>
+                            </div> -->
+                            <div class="translate">
+                                <div id="google_translate_element"></div>
+                                <a @click="cleartrans">Return to original page</a>
                             </div>
                         </div>
                     </div>
@@ -325,6 +331,7 @@ export default {
         };
     },
     mounted() {
+        window.onload = () => this.initTranslate();
         // this.$nextTick(() => {
         //     this.getHeaderHeight();
         // });
@@ -334,196 +341,200 @@ export default {
         // window.removeEventListener("scroll", this.handleWindowScroll);
     },
     methods: {
-        // 导航栏点击事件
-        handleNavbarClick(item, index, bvEvt) {
-            if (index !== "") {
-                this.$store.commit("setSubNavIndex", index + 1);
-            } else {
-                this.$store.commit("setSubNavIndex", 0);
-                this.showDrop = false;
+        // // 导航栏点击事件
+        // handleNavbarClick(item, index, bvEvt) {
+        //     if (index !== "") {
+        //         this.$store.commit("setSubNavIndex", index + 1);
+        //     } else {
+        //         this.$store.commit("setSubNavIndex", 0);
+        //         this.showDrop = false;
+        //     }
+        //     this.$router.push(item.link);
+        //     this.showCollaps = false;
+        // },
+        // handleShowDrop(bvEvt) {
+        //     if (!this.showDrop) {
+        //         bvEvt.preventDefault();
+        //     }
+        //     this.showDrop = true;
+        // },
+        // // 监听窗口滚动，改变导航背景色
+        // handleWindowScroll(e) {
+        //     const myTop =
+        //         document.documentElement.scrollTop || document.body.scrollTop;
+        //     const flag = myTop > 60;
+        //     if (this.showNavbarBg != flag) {
+        //         this.showNavbarBg = flag;
+        //     }
+        // },
+        // // 获取导航栏高度
+        // getHeaderHeight() {
+        //     const headerHeight = this.$refs.header.clientHeight;
+        //     this.$store.commit("setHeaderHeight", headerHeight);
+        // },
+        // toggle(lang) {
+        //     this.$store.commit('SET_LANG', lang)
+        //     localStorage.setItem('lang', lang);
+        //     this.$i18n.locale = lang;
+        // }
+        initTranslate() {
+            var langs = {
+                'af': 'Afrikaans',
+                'sq': 'Albanian',
+                'am': 'Amharic',
+                'ar': 'Arabic',
+                'hy': 'Armenian',
+                'az': 'Azerbaijani',
+                'eu': 'Basque',
+                'be': 'Belarusian',
+                'bn': 'Bengali',
+                'bs': 'Bosnian',
+                'bg': 'Bulgarian',
+                'ca': 'Catalan',
+                'ceb': 'Cebuano',
+                'ny': 'Chichewa',
+                'zh-CN': 'Chinese Simplified',
+                'zh-TW': 'Chinese Traditional',
+                'co': 'Corsican',
+                'hr': 'Croatian',
+                'cs': 'Czech',
+                'da': 'Danish',
+                'nl': 'Dutch',
+                'en': 'English',
+                'eo': 'Esperanto',
+                'et': 'Estonian',
+                'tl': 'Filipino',
+                'fi': 'Finnish',
+                'fr': 'French',
+                'fy': 'Frisian',
+                'gl': 'Galician',
+                'ka': 'Georgian',
+                'de': 'German',
+                'el': 'Greek',
+                'gu': 'Gujarati',
+                'ht': 'Haitian Creole',
+                'ha': 'Hausa',
+                'haw': 'Hawaiian',
+                'iw': 'Hebrew',
+                'hi': 'Hindi',
+                'hmn': 'Hmong',
+                'hu': 'Hungarian',
+                'is': 'Icelandic',
+                'ig': 'Igbo',
+                'id': 'Indonesian',
+                'ga': 'Irish',
+                'it': 'Italian',
+                'ja': 'Japanese',
+                'jw': 'Javanese',
+                'kn': 'Kannada',
+                'kk': 'Kazakh',
+                'km': 'Khmer',
+                'ko': 'Korean',
+                'ku': 'Kurdish (Kurmanji)',
+                'ky': 'Kyrgyz',
+                'lo': 'Lao',
+                'la': 'Latin',
+                'lv': 'Latvian',
+                'lt': 'Lithuanian',
+                'lb': 'Luxembourgish',
+                'mk': 'Macedonian',
+                'mg': 'Malagasy',
+                'ms': 'Malay',
+                'ml': 'Malayalam',
+                'mt': 'Maltese',
+                'mi': 'Maori',
+                'mr': 'Marathi',
+                'mn': 'Mongolian',
+                'my': 'Myanmar (Burmese)',
+                'ne': 'Nepali',
+                'no': 'Norwegian',
+                'ps': 'Pashto',
+                'fa': 'Persian',
+                'pl': 'Polish',
+                'pt': 'Portuguese',
+                'pa': 'Punjabi',
+                'ro': 'Romanian',
+                'ru': 'Russian',
+                'sm': 'Samoan',
+                'gd': 'Scots Gaelic',
+                'sr': 'Serbian',
+                'st': 'Sesotho',
+                'sn': 'Shona',
+                'sd': 'Sindhi',
+                'si': 'Sinhala',
+                'sk': 'Slovak',
+                'sl': 'Slovenian',
+                'so': 'Somali',
+                'es': 'Spanish',
+                'su': 'Sundanese',
+                'sw': 'Swahili',
+                'sv': 'Swedish',
+                'tg': 'Tajik',
+                'ta': 'Tamil',
+                'te': 'Telugu',
+                'th': 'Thai',
+                'tr': 'Turkish',
+                'uk': 'Ukrainian',
+                'ur': 'Urdu',
+                'uz': 'Uzbek',
+                'vi': 'Vietnamese',
+                'cy': 'Welsh',
+                'xh': 'Xhosa',
+                'yi': 'Yiddish',
+                'yo': 'Yoruba',
+                'zu': 'Zulu'
+            };
+            new google.translate.TranslateElement(
+                {
+                    // pageLanguage: 'zh-CN',
+                    // 需要翻译的语言，比如你只需要翻译成越南和英语，这里就只写en,vi
+                    // includedLanguages: 'en,zh-CN,hr,cs,da,nl,fr,de,el,iw,hu,ga,it,ja,ko,pt,ro,ru,sr,es,th,vi,af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca',
+                    includedLanguages: Object.keys(langs).join(','),
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    // 自动显示翻译横幅，就是翻译后顶部出现的那个
+                    autoDisplay: false,
+                    // 还有些其他参数，由于原插件不再维护，找不到详细api了，将就了，实在不行直接上dom操作
+                },
+                'google_translate_element' // 触发元素的id
+            );
+        },
+        cleartrans() {
+            this.delCookie("googtrans");
+            window.location.reload();
+        },
+        delCookie(name) {
+            var Days = 30;
+            var exp = new Date();
+            exp.setTime(exp.getTime() - Days * 24 * 60 * 60 * 30);
+    
+            //这里一定要注意，如果直接访问ip的话，不用注明域名domain
+            //但访问的是域名例如www.baidu.com时，翻译插件的cookie同时存在于一级和二级域名中
+            //即删除翻译cookie时要把domain=www.baidu.com和domain=.baidu.com两个cookie一起删除才行
+            var domain = document.domain;
+            var domainIsIp = false;
+            var dd = domain.split(".");
+            if(dd.length==4){
+            	domainIsIp=true;
             }
-            this.$router.push(item.link);
-            this.showCollaps = false;
-        },
-        handleShowDrop(bvEvt) {
-            if (!this.showDrop) {
-                bvEvt.preventDefault();
+            document.cookie = name + "='';path=/;expires="+ exp.toUTCString();
+            if(domainIsIp==false){
+            	domain="."+dd[1]+"."+dd[2];
+            	document.cookie = name + "='';domain="+domain+";expires="+exp.toGMTString()+";path=/";
             }
-            this.showDrop = true;
-        },
-        // 监听窗口滚动，改变导航背景色
-        handleWindowScroll(e) {
-            const myTop =
-                document.documentElement.scrollTop || document.body.scrollTop;
-            const flag = myTop > 60;
-            if (this.showNavbarBg != flag) {
-                this.showNavbarBg = flag;
-            }
-        },
-        // 获取导航栏高度
-        getHeaderHeight() {
-            const headerHeight = this.$refs.header.clientHeight;
-            this.$store.commit("setHeaderHeight", headerHeight);
-        },
-        toggle(lang) {
-            this.$store.commit('SET_LANG', lang)
-            localStorage.setItem('lang', lang);
-            this.$i18n.locale = lang;
-        }
-    },
+	    }
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-// @import "@/assets/styles/variables.scss";
-
-// #header {
-//     position: fixed;
-//     top: 0;
-//     right: 0;
-//     left: 0;
-//     z-index: 99;
-// }
-
-// ::v-deep.dropdown:hover .btn,
-// ::v-deep.dropdown-item:hover {
-//     border-color: transparent;
-//     background: none;
-// }
-// ::v-deep.nav-link:hover,
-// ::v-deep.dropdown-item:hover,
-// ::v-deep .navbar-nav .nav-link.active {
-//     color: $theme-color !important;
-// }
-
-// ::v-deep.navbar-toggler {
-//     padding: 0;
-//     border: none;
-//     outline: none;
-//     .navbar-toggler-icon {
-//         position: relative;
-//         width: 1em;
-//         // height: 0.1em;
-//         height: 2px;
-//         border-radius: 1px;
-//         background: #fff;
-//         &:after,
-//         &:before {
-//             position: absolute;
-//             left: 0;
-//             content: "";
-//             width: 1em;
-//             height: 2px;
-//             // height: 0.1rem;
-//             background: #fff;
-//             transition: all 0.2s ease-in-out;
-//         }
-//         &:before {
-//             top: -0.3em;
-//         }
-//         &:after {
-//             top: 0.3em;
-//         }
-//     }
-//     &.active .navbar-toggler-icon {
-//         background: transparent;
-//         &:before {
-//             transform: rotate(45deg);
-//             transform-origin: 8%;
-//         }
-//         &:after {
-//             transform: rotate(-45deg);
-//             transform-origin: 8%;
-//         }
-//     }
-// }
-// .dropdown-toggle .active {
-//     color: $theme-color;
-// }
-// ::v-deep .nav-link {
-//     color: #fff !important;
-// }
-// ::v-deep .navbar {
-//     background: transparent !important;
-//     &.active {
-//         background: #fff !important;
-//         box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-//         .navbar-brand,
-//         .nav-link {
-//             color: #333 !important;
-//             &.active {
-//                 color: #3269a5 !important;
-//             }
-//         }
-//         .navbar-toggler {
-//             .navbar-toggler-icon {
-//                 background: #333;
-//                 &:after,
-//                 &:before {
-//                     background: #333;
-//                 }
-//             }
-//             &.active .navbar-toggler-icon {
-//                 background: transparent;
-//             }
-//         }
-//     }
-// }
-// @media screen and (max-width: 992px) {
-//     ::v-deep .navbar {
-//         background: #fff !important;
-//         box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-//         &.active2 {
-//             .navbar-brand,
-//             .nav-link {
-//                 color: #333 !important;
-//                 &.active {
-//                     color: #3269a5 !important;
-//                 }
-//             }
-//             .navbar-toggler {
-//                 .navbar-toggler-icon {
-//                     background: #333;
-//                     &:after,
-//                     &:before {
-//                         background: #333;
-//                     }
-//                 }
-//                 &.active .navbar-toggler-icon {
-//                     background: transparent;
-//                 }
-//             }
-//         }
-//     }
-// }
-// @media screen and (min-width: 992px) {
-//     ::v-deep.dropdown:hover .dropdown-menu {
-//         display: block;
-//     }
-//     ::v-deep .dropdown-menu {
-//         display: none;
-//         margin-top: 20px;
-//         border-color: transparent;
-//         box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-//         &:after {
-//             content: "";
-//             position: absolute;
-//             top: -20px;
-//             left: 0;
-//             width: 100%;
-//             height: 20px;
-//             background: transparent;
-//         }
-//         &:before {
-//             content: "";
-//             position: absolute;
-//             top: -13px;
-//             right: 1px;
-//             width: 0;
-//             height: 0;
-//             border: 7px solid transparent;
-//             border-bottom-color: #fff;
-//         }
-//     }
-// }
+    .translate {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        a {
+            color: #fff;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
 </style>

@@ -6,7 +6,7 @@
     <Partner />
     <Client /> -->
         <!-- banner-area-start -->
-        {{$t('about.title')}}
+        <!-- {{$t('about.title')}} -->
       <div class="banner-area hidden-sm hidden-xs">
           <div class="container">
               <div class="row">
@@ -526,16 +526,16 @@ if (process.browser) {
 }
 
 export default {
-  components: {
-    // Product,
-    // Business,
-    // About,
-    // Client,
-    // Partner
-  },
-  data() {
-    return {
-        featurelist:[
+    components: {
+      // Product,
+      // Business,
+      // About,
+      // Client,
+      // Partner
+    },
+    data() {
+      return {
+          featurelist:[
             {
                 type:'new',
                 list:[{
@@ -576,8 +576,8 @@ export default {
                     oldPrice:'5.00'
                 }],
             }
-        ],
-        productList:[{
+          ],
+          productList:[{
             title:'Dictum',
             name:'',
             img:'/img/singlepro/9.jpg',
@@ -601,14 +601,14 @@ export default {
             img:'img/singlepro/44.jpg',
             price:'7.00',
             oldPrice:'5.00'
-        }]
-    }
-  },
-  mounted() {
-    if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
-      new WOW({}).init()
-    }
-  }
+          }]
+      }
+    },
+    mounted() {
+        if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
+            new WOW({}).init();
+        }
+    },
 }
 </script>
 

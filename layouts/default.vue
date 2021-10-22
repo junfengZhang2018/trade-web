@@ -34,9 +34,9 @@ export default {
         MyFooter,
     },
     created() {
-        if (process.browser) {
-            this.$i18n.locale = this.$store.state.locale || localStorage.getItem('lang') || 'en';
-        }
+        // if (process.browser) {
+        //     this.$i18n.locale = this.$store.state.locale || localStorage.getItem('lang') || 'en';
+        // }
     },
     mounted() {
         if (process.browser) {
