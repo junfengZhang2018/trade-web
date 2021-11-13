@@ -6,7 +6,6 @@
     <Partner />
     <Client /> -->
         <!-- banner-area-start -->
-        <!-- {{$t('about.title')}} -->
       <div class="banner-area hidden-sm hidden-xs">
           <div class="container">
               <div class="row">
@@ -56,7 +55,7 @@
                                             <!-- single-product-start -->
                                             <div class="single-product">
                                                 <div class="single-product-img">
-                                                    <a href="#"><img :src="item.image" alt="" /></a>
+                                                    <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
                                                     <span class="sale-box">
                                                             <span class="sale">Sale</span>
                                                     </span>
@@ -104,7 +103,7 @@
                                 <!-- single-product-start -->
                                 <div class="single-product">
                                     <div class="single-product-img">
-                                        <a href="#"><img :src="item.image" alt="" /></a>
+                                        <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
                                         <span class="new-box">
                                                 <span class="new">New</span>
                                         </span>
@@ -503,7 +502,6 @@ if (process.browser) {
     // 在这里根据环境引入wow.js
     var { WOW } = require("wowjs");
 }
-    import axios from 'axios'
 export default {
     components: {
       // Product,
@@ -580,21 +578,18 @@ export default {
             img:'img/singlepro/44.jpg',
             price:'7.00',
             oldPrice:'5.00'
-          }]
+          }],
+          imageUrl: process.env.IMAGE_URL
       }
     },
     mounted() {
-        if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
-            new WOW({}).init();
-        }
-        
+        new WOW({}).init();
+        this.getProductList();
     },
-    created() {
-        this.getProductList()
-    },
+    created() {},
     methods:{
         getProductList(){
-            axios.post(`http://192.168.101.69:7001/public/homepageList`)
+            this.$axios.post(`/public/homepageList`)
             .then(res=>{
                 console.log('res=>',res);
                 this.productList = res.data.data.list;

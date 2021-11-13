@@ -22,140 +22,139 @@
           <!-- shop-area-start -->
         <div class="shop-area">
             <div class="container align" >
-                    <div class="col-md-9 col-sm-9 col-xs-12">
-                        <div class="shop-right-col wow fadeIn" data-wow-duration=".5s" data-wow-delay=".5s">
-                            <div class="category-products">
-                                <div class="topbar-category">
-                                    <div class="pager-area">
-                                        <div>
-                                            <!-- Nav tabs -->
-                                            <ul class="shop-tab">
-                                                <li role="presentation" class="active"><a href="#gried_view" role="tab" data-toggle="tab">
-                                                        <i class="fa fa-th-large"></i></a>
-                                                </li>
-                                                <li role="presentation"><a href="#list_view" role="tab" data-toggle="tab">
-                                                        <i class="fa fa-th-list"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="sort-by hidden-xs">
-                                        <label>Sort by</label>
-                                        <select>
-                                            <option value="#">Price: Lowest first</option>
-                                            <option value="#">Price: Highest first</option>
-                                            <option value="#">Product Name: A to Z</option>
-                                            <option value="#">Product Name: Z to A</option>
-                                            <option value="#">In stock</option>
-                                            <option value="#">Reference: Lowest first</option>
-                                            <option selected="selected" value="#">--</option>
-                                        </select>
-                                    </div>
-                                    <div class="show hidden-xs">
-                                        <label>Show</label>
-                                        <select>
-                                            <option value="#">24</option>
-                                            <option selected="selected" value="#">12</option>
-                                        </select>
-                                        <span>per page</span>
-                                    </div>
-                                    <div class="shop-breadcrumb">
-                                        <ul>
-                                            <li>
-                                                <a href="javascript:void(0)" @click="prePageNum">&lt;</a>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="shop-right-col wow fadeIn" data-wow-duration=".5s" data-wow-delay=".5s">
+                        <div class="category-products">
+                            <div class="topbar-category">
+                                <div class="pager-area">
+                                    <div>
+                                        <!-- Nav tabs -->
+                                        <ul class="shop-tab">
+                                            <li role="presentation" class="active"><a href="#gried_view" role="tab" data-toggle="tab">
+                                                    <i class="fa fa-th-large"></i></a>
                                             </li>
-                                            <li v-for="(item,index) in pageNumList" :key="index" :class="pageIndex==item?'active':''" >
-                                                <a href="javascript:void(0)" @click="selectPageNum(item)">{{item}}</a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)" @click="nextPageNum">></a>
+                                            <li role="presentation"><a href="#list_view" role="tab" data-toggle="tab">
+                                                    <i class="fa fa-th-list"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="shop-category-product">
-                                    <div class="row">
-                                        <div class="category-product">
-                                            <!-- Tab panes -->
-                                            <div class="tab-content">
-                                                <div role="tabpanel" class="tab-pane active fade in" id="gried_view">
-                                                    <div class="col-md-4 col-sm-6 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index">
-                                                        <!-- single-product-start -->
-                                                        <div class="single-product">
-                                                            <div class="single-product-img">
-                                                                <a href="javascript:void(0)">
-                                                                    <img :src="item.image" alt="" />
-                                                                </a>
-                                                                <span class="sale-box">
-                                                                    <span class="sale">Sale</span>
-                                                                </span>
-                                                                <span class="new-box">
-                                                                    <span class="new">New</span>
-                                                                </span>
+                                <!-- <div class="sort-by hidden-xs">
+                                    <label>Sort by</label>
+                                    <select>
+                                        <option value="#">Price: Lowest first</option>
+                                        <option value="#">Price: Highest first</option>
+                                        <option value="#">Product Name: A to Z</option>
+                                        <option value="#">Product Name: Z to A</option>
+                                        <option value="#">In stock</option>
+                                        <option value="#">Reference: Lowest first</option>
+                                        <option selected="selected" value="#">--</option>
+                                    </select>
+                                </div>
+                                <div class="show hidden-xs">
+                                    <label>Show</label>
+                                    <select>
+                                        <option value="#">24</option>
+                                        <option selected="selected" value="#">12</option>
+                                    </select>
+                                    <span>per page</span>
+                                </div> -->
+                                <div class="shop-breadcrumb">
+                                    <ul>
+                                        <li>
+                                            <a href="javascript:void(0)" @click="prePageNum">&lt;</a>
+                                        </li>
+                                        <li v-for="(item,index) in pageNumList" :key="index" :class="pageIndex==item?'active':''" >
+                                            <a href="javascript:void(0)" @click="selectPageNum(item)">{{item}}</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" @click="nextPageNum">></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="shop-category-product">
+                                <div class="row">
+                                    <div class="category-product">
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active fade in" id="gried_view">
+                                                <div class="col-md-4 col-sm-6 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index">
+                                                    <!-- single-product-start -->
+                                                    <div class="single-product">
+                                                        <div class="single-product-img">
+                                                            <a href="javascript:void(0)">
+                                                                <img :src="imageUrl+item.image" alt="" />
+                                                            </a>
+                                                            <span class="sale-box">
+                                                                <span class="sale">Sale</span>
+                                                            </span>
+                                                            <span class="new-box">
+                                                                <span class="new">New</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="single-product-content">
+                                                            <div class="product-title">
+                                                                <h5>
+                                                                    <a href="javascript:void(0)">{{item.name}}</a>
+                                                                </h5>
                                                             </div>
-                                                            <div class="single-product-content">
-                                                                <div class="product-title">
-                                                                    <h5>
-                                                                        <a href="javascript:void(0)">{{item.name}}</a>
-                                                                    </h5>
-                                                                </div>
-                                                                <div class="rating">
-                                                                    <div class="star" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
-                                                                </div>
-                                                                <div class="price-box">
-                                                                    <span class="price">${{item.price}}</span>
-                                                                    <span class="old-price">${{item.oldPrice}}</span>
-                                                                </div>
+                                                            <div class="rating">
+                                                                <div class="star" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <span class="price">${{item.price}}</span>
+                                                                <span class="old-price">${{item.oldPrice}}</span>
                                                             </div>
                                                         </div>
-                                                        <!-- single-product-end -->
                                                     </div>
+                                                    <!-- single-product-end -->
                                                 </div>
-                                                <div role="tabpanel" class="tab-pane fade" id="list_view">
-                                                    <div class="list-view">
-                                                        <div class="row">
-                                                            <div class="col-md-12 col-sm-12 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index">
-                                                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                                                    <!-- single-product-start -->
-                                                                    <div class="single-product">
-                                                                        <div class="single-product-img">
-                                                                            <a href="javascript:void(0)">
-                                                                                <img :src="item.image" alt="" />
-                                                                            </a>
-                                                                            <span class="sale-box">
-                                                                                <span class="sale">Sale</span>
-                                                                            </span>
-                                                                            <span class="new-box">
-                                                                                <span class="new">New</span>
-                                                                            </span>
+                                            </div>
+                                            <div role="tabpanel" class="tab-pane fade" id="list_view">
+                                                <div class="list-view">
+                                                    <div class="row">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index">
+                                                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                                                <!-- single-product-start -->
+                                                                <div class="single-product">
+                                                                    <div class="single-product-img">
+                                                                        <a href="javascript:void(0)">
+                                                                            <img :src="imageUrl+item.image" alt="" />
+                                                                        </a>
+                                                                        <span class="sale-box">
+                                                                            <span class="sale">Sale</span>
+                                                                        </span>
+                                                                        <span class="new-box">
+                                                                            <span class="new">New</span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- single-product-end -->
+                                                            </div>
+                                                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                                                <!-- single-product-start -->
+                                                                <div class="single-product">
+                                                                    <div class="single-product-content">
+                                                                        <div class="product-title">
+                                                                            <h5>
+                                                                                <a href="javascript:void(0)">{{item.name}}</a>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="rating">
+                                                                           <div class="star" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
+                                                                        </div>
+                                                                        <div class="price-box">
+                                                                            <span class="price">${{item.price}}</span>
+                                                                            <span class="old-price">${{item.oldPrice}}</span>
+                                                                        </div>
+                                                                        <p class="product-desc">{{item.desc}}</p>
+                                                                        <div class="availability">
+                                                                            <span>In stock</span>
                                                                         </div>
                                                                     </div>
-                                                                    <!-- single-product-end -->
                                                                 </div>
-                                                                <div class="col-md-8 col-sm-8 col-xs-12">
-                                                                    <!-- single-product-start -->
-                                                                    <div class="single-product">
-                                                                        <div class="single-product-content">
-                                                                            <div class="product-title">
-                                                                                <h5>
-                                                                                    <a href="javascript:void(0)">{{item.name}}</a>
-                                                                                </h5>
-                                                                            </div>
-                                                                            <div class="rating">
-                                                                               <div class="star" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
-                                                                            </div>
-                                                                            <div class="price-box">
-                                                                                <span class="price">${{item.price}}</span>
-                                                                                <span class="old-price">${{item.oldPrice}}</span>
-                                                                            </div>
-                                                                            <p class="product-desc">{{item.desc}}</p>
-                                                                            <div class="availability">
-                                                                                <span>In stock</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!-- single-product-end -->
-                                                                </div>
+                                                                <!-- single-product-end -->
                                                             </div>
                                                         </div>
                                                     </div>
@@ -167,6 +166,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         <!-- shop-area-end -->
@@ -174,8 +174,6 @@
 </template>
 
 <script>
-   // import 《组件名称》 from '《组件路径》';
-    import axios from 'axios'
     export default {
         components: {},
         data() {
@@ -186,11 +184,12 @@
                 productList:[],
                 pageNumList:[],
                 pageIndex:1,
-                total:''
+                total:'',
+                imageUrl: process.env.IMAGE_URL
             };
         },
         created() {
-            this.getProductList()
+            
         },
         //监听属性 类似于data概念
         computed: {},
@@ -203,12 +202,12 @@
                     pageSize:this.pageSize,
                     pageNum:this.pageNum
                 };
-                axios.post(`http://192.168.101.69:7001/public/productList`,data)
+                this.$axios.post(`/public/productList`, data)
                 .then(res=>{
                     console.log('res=>',res);
                     this.productList = res.data.data.list;
                     this.total = res.data.data.total;
-                    let num =   Math.ceil(res.data.data.total/this.pageSize)
+                    let num = Math.ceil(res.data.data.total/this.pageSize)
                     if(this.pageNumList.length==0){
                         if(num>=3){
                             num = 3;
@@ -222,7 +221,7 @@
             selectPageNum(num){
                 this.pageNum = num;
                 this.pageIndex = num;
-                 this.getProductList()
+                this.getProductList()
             },
             prePageNum(){
                 let num = this.pageNumList[0];
@@ -247,7 +246,7 @@
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
-        console.log(process.env)
+            this.getProductList();
         },
     }
 </script>

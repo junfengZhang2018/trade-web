@@ -19,17 +19,17 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
-                        <a href="javascript:void(0)" aria-label="Previous" @click="prePageNum">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
+                            <a href="javascript:void(0)" aria-label="Previous" @click="prePageNum">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
                         </li>
                         <li v-for="(item,index) in pageNumList" :key="index" :class="pageIndex==item?'active':''" >
                             <a href="javascript:void(0)" @click="selectPageNum(item)">{{item}}</a>
                         </li>
                         <li>
-                        <a href="javascript:void(0)" aria-label="Next" @click="nextPageNum">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                            <a href="javascript:void(0)" aria-label="Next" @click="nextPageNum">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
                         </li>
                     </ul>
                </nav>
@@ -39,8 +39,6 @@
 </template>
 
 <script>
-   // import 《组件名称》 from '《组件路径》';
-    import axios from 'axios'
     export default {
         components: {},
         data() {
@@ -56,9 +54,7 @@
         },
         //监听属性 类似于data概念
         computed: {},
-         created() {
-            this.getMsgList()
-        },
+        created() {},
         //监控data中的数据变化
         watch: {},
         //方法集合
@@ -68,9 +64,8 @@
                     pageSize:this.pageSize,
                     pageNum:this.pageNum
                 };
-                axios.post(`http://192.168.101.69:7001/public/messageList`,data)
+                this.$axios.post(`/public/messageList`, data)
                 .then(res=>{
-                    console.log('res=>',res);
                     this.msgDataList = res.data.data.list;
                     this.total = res.data.data.total;
                     let num =   Math.ceil(res.data.data.total/this.pageSize)
@@ -78,7 +73,7 @@
                         if(num>=5){
                             num = 5;
                         }
-                        for(let i =0;i<num;i++){
+                        for(let i=0;i<num;i++){
                             this.pageNumList.push(i+1)
                         }
                     }
@@ -87,7 +82,7 @@
             selectPageNum(num){
                 this.pageNum = num;
                 this.pageIndex = num;
-                 this.getMsgList()
+                this.getMsgList();
             },
             prePageNum(){
                 let num = this.pageNumList[0];
@@ -112,7 +107,7 @@
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
-            
+            this.getMsgList();
         },
     }
 </script>
