@@ -10,21 +10,22 @@ const app = new Koa();
 const router = new Router();
 
 const transport = nodemailer.createTransport({
-  host: "smtp.mxhichina.com",
-  port: "25",
-  secureConnection: true,
+  // host: "smtp.mxhichina.com",
+  // port: "25",
+  // secureConnection: true,
+  service: 'qq',
   auth: {
-    user: "*****", // 邮箱账号
-    pass: "*****" // 邮箱密码
+    user: '1009085480@qq.com', // 邮箱账号
+    pass: "xyolvusbqmkgbedb" // 邮箱密码
   }
 });
 
 router.post("/sendmail", async (ctx, next) => {
-  const { html, type } = ctx.request.body;
+  const { html, subject } = ctx.request.body;
   const mailOptions = {
-    from: `一条来自蚂蚁云网站的${type} public@mayiyundt.com`,
-    to: "public@mayiyundt.com",
-    subject: `一条来自蚂蚁云网站的${type}`, //邮件标题
+    from: "1009085480@qq.com",
+    to: "1009085480@qq.com",
+    subject, //邮件标题
     html //邮件内容
   };
   let error_code = 200;

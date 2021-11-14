@@ -75,6 +75,13 @@
             </div>
         </div>
         <!-- contact-area-end -->
+        <div v-if="isHidden">
+            <div class="prompt-box success">
+                <!-- <div class="prompt-success-icon"></div> -->
+                <div class= "msgStyle">{{msgTips}}</div>
+                <div class="prompt-close-btn" @click="close()">X</div>
+            </div>
+        </div>
    </div>
 </template>
 
@@ -90,6 +97,8 @@
                 email:'',
                 subject:'',
                 message:'',
+                msgTips:'提交成功，我们将尽快与您取得联系！',
+                isHidden:false
             };
         },
         //监听属性 类似于data概念
@@ -98,26 +107,104 @@
         watch: {},
         //方法集合
         methods: {
-            submit(){
-                let data = {
-                    pageSize:this.name,
-                    pageNum:this.email,
-                    pageNum:this.subject,
-                    pageNum:this.message,
-                };
-                this.$axios.post(`/public/messageList`, data)
-                .then(res=>{
-                    
+            async submit(){
+                if(this.name==''||this.email==''){
+                    return false
+                }
+                const res = await this.$axios.post(`http://localhost:3000/sendmail`, {
+                  subject: this.subject,
+                  html: `
+                    <p><strong>发信人姓名：</strong></p>
+                    <p>${this.name}</p>
+                    <p><strong>发信人邮箱：</strong></p>
+                    <p>${this.email}</p>
+                    <p><strong>发信人留言：</strong></p>
+                    <p>${this.message}</p>
+                  `
                 })
+                if(res.data.error_code === 200) {
+                    // this.$bvToast.toast('提交成功，我们将尽快与您取得联系！');
+                    this.isHidden = true;
+                    setTimeout(()=>{
+                        this.isHidden = false
+                    }, 2000)
+                }
+            },
+            close(){
+                 this.isHidden = false;
             }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）   
         mounted() {
-            
+           
         },
     }
 </script>
 <style lang='scss' scoped>
+.prompt-box {
+    width:600px;
+    min-height:36px;
+    line-height:36px;
+    position:fixed;
+    left:50%;
+    top:20px;
+    margin-left:-320px;
+    z-index:99999;
+    border-radius:2px;
+    padding:0 25px;
+    color:#666;
+}
+.prompt-box.warning {
+    font-weight:bold;
+    border: 1px solid #FCD037;
+}
+.prompt-box.success {
+    font-weight:bold;
+    border: 1px solid #e1f3d8;
+    color: #67c23a;
+    background-color: #e1f3d8;
+}
+.prompt-box.notify {
+    font-weight:bold;
+    border: 1px solid #FCD037;
+}
+.prompt-close-btn {
+    // background:url("/images/closebtn.svg") no-repeat center;
+    width:14px;
+    height:14px;
+    position:absolute;
+    right:20px;
+    top:0;
+    cursor:pointer;
+    color: #909399;
+}
+.msgStyle {
+    display:inline-block;
+    vertical-align:middle;
+    max-width:500px;
+    text-align:left;
+}
+.prompt-warning-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+}
+.prompt-success-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+}
+.prompt-notify-icon {
+    display: inline-block;
+    width: 26px;
+    height: 25px;
+    vertical-align: middle;
+}
+.prompt-hidden {
+    display:none;
+}
 .contact-form .submit{
     width: 120px;
     line-height: 40px;
