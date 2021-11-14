@@ -106,6 +106,14 @@
                                                                 <span class="price">${{item.price}}</span>
                                                                 <span class="old-price">${{item.oldPrice}}</span>
                                                             </div>
+                                                            <div class="product-action">
+                                                                <a class="add-wishlist" href="#" title="add to wishlist">
+                                                                    <i class="fa fa-heart"></i>
+                                                                </a>
+                                                                <a class="quick-view" href="#" title="quick view" @click="productDetails(item)"  data-toggle="modal" data-target="#myModal">
+                                                                    <i class="fa fa-search"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- single-product-end -->
@@ -148,6 +156,14 @@
                                                                             <span class="price">${{item.price}}</span>
                                                                             <span class="old-price">${{item.oldPrice}}</span>
                                                                         </div>
+                                                                          <div class="product-action">
+                                                                            <a class="add-wishlist" href="#" title="add to wishlist">
+                                                                                <i class="fa fa-heart"></i>
+                                                                            </a>
+                                                                            <a class="quick-view" title="quick view" @click="productDetails(item)"  data-toggle="modal" data-target="#myModal">
+                                                                                <i class="fa fa-search"></i>
+                                                                            </a>
+                                                                        </div>
                                                                         <p class="product-desc">{{item.desc}}</p>
                                                                         <div class="availability">
                                                                             <span>In stock</span>
@@ -170,6 +186,136 @@
             </div>
         </div>
         <!-- shop-area-end -->
+                <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="product-details">
+                            <div class="container">
+                                <div class="row" style="min-height:300px;max-height:500px">
+                                    <div class="col-md-5 col-xs-12 col-sm-5" >
+                                        <div class="picture-tab">
+                                            <ul class="pic-tabs">
+                                                <li class="active" v-if="details.image"><a data-toggle="tab" href="#pic0"><img :src="imageUrl+details.image" alt="" /></a></li>
+                                                <li v-if="details.detailImage1"><a data-toggle="tab" href="#pic1"><img :src="imageUrl+details.detailImage1" alt="" /></a></li>
+                                                <li v-if="details.detailImage2"><a data-toggle="tab" href="#pic2"><img :src="imageUrl+details.detailImage2" alt="" /></a></li>
+                                                <li v-if="details.detailImage3"><a data-toggle="tab" href="#pic3"><img :src="imageUrl+details.detailImage3" alt="" /></a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div id="pic0" class="tab-pane fade in active"  v-if="details.image">
+                                                    <!-- single-product-start -->
+                                                    <div class="single-product">
+                                                        <div class="single-product-img">
+                                                            <a href="#">
+                                                                <img :src="imageUrl+details.image" alt="" />
+                                                            </a>
+                                                            <span class="sale-box">
+                                                                <span class="sale">Sale</span>
+                                                            </span>
+                                                            <span class="new-box">
+                                                                <span class="new">New</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- single-product-end -->
+                                                </div>
+                                                <div id="pic1" class="tab-pane fade" v-if="details.detailImage1">
+                                                    <!-- single-product-start -->
+                                                    <div class="single-product">
+                                                        <div class="single-product-img">
+                                                            <a href="#">
+                                                                <img :src="imageUrl+details.detailImage1" alt="" />
+                                                            </a>
+                                                            <span class="sale-box">
+                                                                <span class="sale">Sale</span>
+                                                            </span>
+                                                            <span class="new-box">
+                                                                <span class="new">New</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- single-product-end -->
+                                                </div>
+                                                <div id="pic2" class="tab-pane fade" v-if="details.detailImage2">
+                                                    <!-- single-product-start -->
+                                                    <div class="single-product">
+                                                        <div class="single-product-img">
+                                                            <a href="#">
+                                                                <img :src="imageUrl+details.detailImage2" alt="" />
+                                                            </a>
+                                                            <span class="sale-box">
+                                                                <span class="sale">Sale</span>
+                                                            </span>
+                                                            <span class="new-box">
+                                                                <span class="new">New</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- single-product-end -->
+                                                </div>
+                                                <div id="pic3" class="tab-pane fade" v-if="details.detailImage3">
+                                                    <!-- single-product-start -->
+                                                    <div class="single-product">
+                                                        <div class="single-product-img">
+                                                            <a href="#">
+                                                                <img :src="imageUrl+details.detailImage3" alt="" />
+                                                            </a>
+                                                            <span class="sale-box">
+                                                                <span class="sale">Sale</span>
+                                                            </span>
+                                                            <span class="new-box">
+                                                                <span class="new">New</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- single-product-end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-xs-12 col-sm-7">
+                                        <div class="product-details-info" >
+                                            <h5 class="product-title">{{details.name}}</h5>
+                                            <div class="price-box">
+                                                <span class="price">${{details.price}}</span>
+                                                <span class="old-price">${{details.oldPrice}}</span>
+                                            </div>
+                                            <div class="rating">
+                                                <div class="star" :class="zndex<=details.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
+                                            </div>
+                                            <div class="short-description">
+                                                <p>{{details.desc}}
+                                                </p>
+                                            </div>
+                                            <div class="widget-icon">
+                                                <a href="#">
+                                                    <i class="fa fa-facebook"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-twitter"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-linkedin"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="fa fa-google-plus"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
    </div>
 </template>
 
@@ -181,12 +327,34 @@
             return {
                 pageSize:9,
                 pageNum:1,
-                productList:[],
-                pageNumList:[],
+                // productList:[],
+                // pageNumList:[],
                 pageIndex:1,
-                total:'',
-                imageUrl: process.env.IMAGE_URL
+                // total:'',
+                imageUrl: process.env.IMAGE_URL,
+                details:{}
             };
+        },
+        async asyncData({ $axios }) {
+            let data = {
+                pageSize:9,
+                pageNum:1
+            };
+            let pageNumList =[];
+            let total ='';
+            const resultData = await $axios.post(`/public/productList`, data)
+            let productList = resultData.data.data.list;
+                total = resultData.data.data.total;
+                    let num = Math.ceil(total/9)
+                    if(pageNumList.length==0){
+                        if(num>=3){
+                            num = 3;
+                        }
+                        for(let i =0;i<num;i++){
+                            pageNumList.push(i+1)
+                        }
+                    }
+            return {productList,pageNumList,total};
         },
         created() {
             
@@ -218,6 +386,10 @@
                     }
                 })      
             },
+            productDetails(item){
+                console.log(item)
+                this.details = item
+            },
             selectPageNum(num){
                 this.pageNum = num;
                 this.pageIndex = num;
@@ -226,27 +398,39 @@
             prePageNum(){
                 let num = this.pageNumList[0];
                 if(num <= 1){
+                    this.pageNum = this.pageNum-1;
+                    this.pageIndex = this.pageIndex-1;
+                    this.getProductList();
                     return false
                 }else{
                     num--
+                    this.pageNum = num;
+                    this.pageIndex = num;
                     this.pageNumList.unshift(num);
                     this.pageNumList.pop()
+                    this.getProductList();
                 }
             },
             nextPageNum(){
                 let num = this.pageNumList[this.pageNumList.length-1];
                 if(num*this.pageSize >= this.total){
+                    this.pageNum = this.pageNum+1;
+                    this.pageIndex = this.pageIndex+1;
+                    this.getProductList();
                     return false
                 }else{
                     num++
+                    this.pageNum = num;
+                    this.pageIndex = num;
                     this.pageNumList.push(num);
                     this.pageNumList.shift()
+                    this.getProductList();
                 }
             }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
-            this.getProductList();
+            // this.getProductList();
         },
     }
 </script>

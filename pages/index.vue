@@ -554,38 +554,19 @@ export default {
                 }],
             }
           ],
-          productList:[{
-            title:'Dictum',
-            name:'',
-            img:'/img/singlepro/9.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/5.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/10.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/44.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-          }],
+        //   productList:[],
           imageUrl: process.env.IMAGE_URL
       }
     },
     mounted() {
         new WOW({}).init();
-        this.getProductList();
+        // this.getProductList();
     },
+    async asyncData({ $axios }) {
+            const res = await $axios.post(`/public/homepageList`)
+            let productList = res.data.data.list;
+            return {productList};
+        },
     created() {},
     methods:{
         getProductList(){
@@ -602,7 +583,7 @@ export default {
 <style lang="scss" scoped>
 //banner-area-1
 .single-product .single-product-img{
-    height:255px;
+    height:300px;
 }
 .mar-15 {
     margin-top: 15px;

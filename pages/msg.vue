@@ -8,7 +8,7 @@
                    <div class="time">时间</div>
                </div>
                <div class="tab-content">
-                   <div class="list" v-for="(item,index) in msgDataList" :key="index">
+                   <div class="list quick-view" v-for="(item,index) in msgDataList" :key="index" @click="msgDetails(item)"  data-toggle="modal" data-target="#myModal">
                         <div class="num">{{index+1}}</div>
                         <div class="tab-col">{{item.title}}</div>
                         <div class="time">{{item.updateTime}}</div>
@@ -24,7 +24,7 @@
                             </a>
                         </li>
                         <li v-for="(item,index) in pageNumList" :key="index" :class="pageIndex==item?'active':''" >
-                            <a href="javascript:void(0)" @click="selectPageNum(item)">{{item}}</a>
+                            <a href="javascript:void(0)"   @click="selectPageNum(item)">{{item}}</a>
                         </li>
                         <li>
                             <a href="javascript:void(0)" aria-label="Next" @click="nextPageNum">
@@ -35,6 +35,26 @@
                </nav>
            </div>
        </div>
+       <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span>{{details.title}}</span>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="product-details">
+                            <div class="container">
+                                <div class="row" style="min-height:300px;max-height:500px">
+                                      {{details.content}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
    </div>
 </template>
 
@@ -44,12 +64,13 @@
         data() {
         //这里存放数据
             return {
-                pageSize:3,
+                pageSize:10,
                 pageNum:1,
-                msgDataList:[],
-                pageNumList:[],
+                // msgDataList:[],
+                // pageNumList:[],
                 pageIndex:1,
-                total:''
+                details:{}
+                // total:''
             };
         },
         //监听属性 类似于data概念
@@ -57,8 +78,33 @@
         created() {},
         //监控data中的数据变化
         watch: {},
+        async asyncData({ $axios }) {
+            let data = {
+                pageSize:10,
+                pageNum:1
+            };
+            let pageNumList =[];
+            let total ='';
+            const resultData = await $axios.post(`/public/messageList`, data)
+            let msgDataList = resultData.data.data.list;
+                total = resultData.data.data.total;
+                    let num = Math.ceil(total/9)
+                    if(pageNumList.length==0){
+                        if(num>=3){
+                            num = 3;
+                        }
+                        for(let i =0;i<num;i++){
+                            pageNumList.push(i+1)
+                        }
+                    }
+            return {msgDataList,pageNumList,total};
+        },
         //方法集合
         methods: {
+            msgDetails(item){
+                console.log(item)
+                this.details = item
+            },
             getMsgList(){
                 let data = {
                     pageSize:this.pageSize,
@@ -87,31 +133,64 @@
             prePageNum(){
                 let num = this.pageNumList[0];
                 if(num <= 1){
+                    this.pageNum = this.pageNum-1;
+                    this.pageIndex = this.pageIndex-1;
+                    this.getMsgList();
                     return false
                 }else{
                     num--
                     this.pageNumList.unshift(num);
                     this.pageNumList.pop()
+                    this.pageNum = num;
+                    this.pageIndex = num;
+                    this.getMsgList();
                 }
             },
             nextPageNum(){
                 let num = this.pageNumList[this.pageNumList.length-1];
                 if(num*this.pageSize >= this.total){
+                    this.pageNum = this.pageNum+1;
+                    this.pageIndex = this.pageIndex+1;
+                    this.getMsgList();
                     return false
                 }else{
                     num++
                     this.pageNumList.push(num);
                     this.pageNumList.shift()
+                    this.pageNum = num;
+                    this.pageIndex = num;
+                    this.getMsgList();
                 }
             }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
-            this.getMsgList();
+            // this.getMsgList();
         },
     }
 </script>
 <style lang='scss' scoped>
+    #myModal{
+        z-index: 99999999;
+    }
+    @media screen and (max-width: 768px) {
+        .modal-dialog{
+            width: 500px!important;
+        }
+        .modal-content{
+            margin: 0 auto;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px){
+        .modal-dialog{
+            width:800px!important;
+        }
+        .modal-content {
+           margin: 0 auto;
+        }
+    }
+        
+
     .table{
         width: 100%;
         height: auto;

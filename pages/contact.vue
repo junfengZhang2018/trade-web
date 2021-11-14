@@ -30,21 +30,19 @@
                                 Leave a Message
                             </h3>
                             <div class="row">
-                                <form action="mail.php" method="post">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" placeholder="Name (required)" />
+                                        <input type="text" v-model="name"  placeholder="Name (required)" />
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" placeholder="Email (required)" />
+                                        <input type="email" v-model="email" placeholder="Email (required)" />
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" placeholder="Subject" />
+                                        <input type="text" v-model="subject"  placeholder="Subject" />
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <textarea placeholder="Message" id="message" cols="30" rows="10"></textarea>
-                                        <input type="submit" value="Submit Form" />
+                                        <textarea placeholder="Message" v-model="message" id="message" cols="30" rows="10"></textarea>
+                                        <div class="submit" @click="submit">submit</div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -88,7 +86,10 @@
         data() {
         //这里存放数据
             return {
-                
+                name:'',
+                email:'',
+                subject:'',
+                message:'',
             };
         },
         //监听属性 类似于data概念
@@ -97,7 +98,18 @@
         watch: {},
         //方法集合
         methods: {
-            
+            submit(){
+                let data = {
+                    pageSize:this.name,
+                    pageNum:this.email,
+                    pageNum:this.subject,
+                    pageNum:this.message,
+                };
+                this.$axios.post(`/public/messageList`, data)
+                .then(res=>{
+                    
+                })
+            }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）   
         mounted() {
@@ -106,6 +118,22 @@
     }
 </script>
 <style lang='scss' scoped>
+.contact-form .submit{
+    width: 120px;
+    line-height: 40px;
+    text-align: center;
+    background: #252525 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
 /*------------------------------
 17. contact
 ------------------------------*/
