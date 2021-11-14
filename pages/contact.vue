@@ -1,6 +1,7 @@
 <template>
    <div class=''>
        <!-- heading-banner-start -->
+       <p @click="sendMail">dfhsjkdfkjkdks</p>
         <div class="heading-banner contact-banner">
             <div class="container">
                 <div class="row">
@@ -88,7 +89,10 @@
         data() {
         //这里存放数据
             return {
-                
+                form: {
+                    name: '几十块',
+                    message: '挂号费改很反感',
+                }
             };
         },
         //监听属性 类似于data概念
@@ -97,7 +101,23 @@
         watch: {},
         //方法集合
         methods: {
-            
+            async sendMail() {
+                const res = await this.$axios.post(`http://localhost:3000/sendmail`, {
+                //   email: this.form.email,
+                  email: '414689608@qq.com',
+                //   subject: this.form.subject,
+                  subject: '猎杀对决',
+                  html: `
+                    <p><strong>发信人姓名：</strong></p>
+                    <p>${this.form.name}</p>
+                    <p><strong>发信人留言：</strong></p>
+                    <p>${this.form.message}</p>
+                  `
+                })
+                if(res.data.error_code === 200) {
+                    this.$bvToast.toast('提交成功，我们将尽快与您取得联系！');
+                }
+            }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）   
         mounted() {

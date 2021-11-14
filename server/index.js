@@ -20,11 +20,11 @@ const transport = nodemailer.createTransport({
 });
 
 router.post("/sendmail", async (ctx, next) => {
-  const { html, type } = ctx.request.body;
+  const { html, subject, email } = ctx.request.body;
   const mailOptions = {
-    from: `一条来自蚂蚁云网站的${type} public@mayiyundt.com`,
-    to: "public@mayiyundt.com",
-    subject: `一条来自蚂蚁云网站的${type}`, //邮件标题
+    from: email,
+    to: "1009085480@qq.com",
+    subject, //邮件标题
     html //邮件内容
   };
   let error_code = 200;
@@ -32,6 +32,7 @@ router.post("/sendmail", async (ctx, next) => {
   try {
     await transport.sendMail(mailOptions);
   } catch (err) {
+    console.log('2333',err)
     error_code = 400;
     error_msg = err.message;
   }
