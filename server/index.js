@@ -10,19 +10,20 @@ const app = new Koa();
 const router = new Router();
 
 const transport = nodemailer.createTransport({
-  host: "smtp.mxhichina.com",
-  port: "25",
-  secureConnection: true,
+  // host: "smtp.mxhichina.com",
+  // port: "25",
+  // secureConnection: true,
+  service: 'qq',
   auth: {
-    user: "*****", // 邮箱账号
-    pass: "*****" // 邮箱密码
+    user: '1009085480@qq.com', // 邮箱账号
+    pass: "xyolvusbqmkgbedb" // 邮箱密码
   }
 });
 
 router.post("/sendmail", async (ctx, next) => {
-  const { html, subject, email } = ctx.request.body;
+  const { html, subject } = ctx.request.body;
   const mailOptions = {
-    from: email,
+    from: "1009085480@qq.com",
     to: "1009085480@qq.com",
     subject, //邮件标题
     html //邮件内容
@@ -32,7 +33,6 @@ router.post("/sendmail", async (ctx, next) => {
   try {
     await transport.sendMail(mailOptions);
   } catch (err) {
-    console.log('2333',err)
     error_code = 400;
     error_msg = err.message;
   }
