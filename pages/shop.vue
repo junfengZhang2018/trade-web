@@ -86,12 +86,12 @@
                                                             <a href="javascript:void(0)">
                                                                 <img :src="imageUrl+item.image" alt="" />
                                                             </a>
-                                                            <span class="sale-box">
+                                                            <!-- <span class="sale-box">
                                                                 <span class="sale">Sale</span>
                                                             </span>
                                                             <span class="new-box">
                                                                 <span class="new">New</span>
-                                                            </span>
+                                                            </span> -->
                                                         </div>
                                                         <div class="single-product-content">
                                                             <div class="product-title">
@@ -130,12 +130,12 @@
                                                                         <a href="javascript:void(0)">
                                                                             <img :src="imageUrl+item.image" alt="" />
                                                                         </a>
-                                                                        <span class="sale-box">
+                                                                        <!-- <span class="sale-box">
                                                                             <span class="sale">Sale</span>
                                                                         </span>
                                                                         <span class="new-box">
                                                                             <span class="new">New</span>
-                                                                        </span>
+                                                                        </span> -->
                                                                     </div>
                                                                 </div>
                                                                 <!-- single-product-end -->
@@ -215,12 +215,12 @@
                                                             <a href="#">
                                                                 <img :src="imageUrl+details.image" alt="" />
                                                             </a>
-                                                            <span class="sale-box">
+                                                            <!-- <span class="sale-box">
                                                                 <span class="sale">Sale</span>
                                                             </span>
                                                             <span class="new-box">
                                                                 <span class="new">New</span>
-                                                            </span>
+                                                            </span> -->
                                                         </div>
                                                     </div>
                                                     <!-- single-product-end -->
@@ -232,12 +232,12 @@
                                                             <a href="#">
                                                                 <img :src="imageUrl+details.detailImage1" alt="" />
                                                             </a>
-                                                            <span class="sale-box">
+                                                            <!-- <span class="sale-box">
                                                                 <span class="sale">Sale</span>
                                                             </span>
                                                             <span class="new-box">
                                                                 <span class="new">New</span>
-                                                            </span>
+                                                            </span> -->
                                                         </div>
                                                     </div>
                                                     <!-- single-product-end -->
@@ -249,12 +249,12 @@
                                                             <a href="#">
                                                                 <img :src="imageUrl+details.detailImage2" alt="" />
                                                             </a>
-                                                            <span class="sale-box">
+                                                            <!-- <span class="sale-box">
                                                                 <span class="sale">Sale</span>
                                                             </span>
                                                             <span class="new-box">
                                                                 <span class="new">New</span>
-                                                            </span>
+                                                            </span> -->
                                                         </div>
                                                     </div>
                                                     <!-- single-product-end -->
@@ -266,12 +266,12 @@
                                                             <a href="#">
                                                                 <img :src="imageUrl+details.detailImage3" alt="" />
                                                             </a>
-                                                            <span class="sale-box">
+                                                            <!-- <span class="sale-box">
                                                                 <span class="sale">Sale</span>
                                                             </span>
                                                             <span class="new-box">
                                                                 <span class="new">New</span>
-                                                            </span>
+                                                            </span> -->
                                                         </div>
                                                     </div>
                                                     <!-- single-product-end -->
@@ -438,9 +438,6 @@
 /*------------------------------
 shop
 ------------------------------*/
-#gried_view .single-product .single-product-img{
-    height:255px;
-}
 .shop-area {
   background: #f7f7f7 none repeat scroll 0 0;
   padding: 80px 0;
@@ -681,7 +678,6 @@ option {
 }
 .list-view .single-product .single-product-img {
     margin: auto -10px 0;
-    height: 300px;
 }
 .list-view .single-product {
     background: transparent none repeat scroll 0 0;

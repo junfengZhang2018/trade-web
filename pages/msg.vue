@@ -3,13 +3,13 @@
        <div class="main-view container">
            <div class="table">
                <div class="tab-title">
-                   <div class="num">序号</div>
-                   <div class="tab-col">标题</div>
-                   <div class="time">时间</div>
+                   <div class="num">serial number</div>
+                   <div class="tab-col">title</div>
+                   <div class="time">time</div>
                </div>
                <div class="tab-content">
                    <div class="list quick-view" v-for="(item,index) in msgDataList" :key="index" @click="msgDetails(item)"  data-toggle="modal" data-target="#myModal">
-                        <div class="num">{{index+1}}</div>
+                        <div class="num">{{(pageNum-1)*pageSize+index+1}}</div>
                         <div class="tab-col">{{item.title}}</div>
                         <div class="time">{{item.updateTime}}</div>
                    </div>
@@ -210,6 +210,7 @@
                 border-bottom:2px solid #dfdddc;
                 padding: 10px;
                 text-align: center;
+                cursor: pointer;
             }
         }
         .tab-title,.list{

@@ -59,9 +59,6 @@
                                                     <span class="sale-box">
                                                             <span class="sale">Sale</span>
                                                     </span>
-                                                    <span class="new-box">
-                                                            <span class="new">New</span>
-                                                    </span>
                                                 </div>
                                                 <div class="single-product-content">
                                                     <div class="product-title">
