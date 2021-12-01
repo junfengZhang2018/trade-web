@@ -6,7 +6,6 @@
     <Partner />
     <Client /> -->
         <!-- banner-area-start -->
-        <!-- {{$t('about.title')}} -->
       <div class="banner-area hidden-sm hidden-xs">
           <div class="container">
               <div class="row">
@@ -40,7 +39,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <h3>FEATURED PRODUCTS</h3>
+                            <h3>{{productList[0].title}}</h3>
                         </div>
                     </div>
                 </div>
@@ -48,45 +47,29 @@
                     <div class="col-md-12">
                         <div class="feature-tab wow fadeIn" data-wow-duration=".5s" data-wow-delay=".5s">
                             <ul class="my-tab">
-                                <li class="active"><a data-toggle="tab" href="#new">New</a></li>
-                                <li><a data-toggle="tab" href="#men">Men</a></li>
-                                <li><a data-toggle="tab" href="#women">Women</a></li>
-                                <li><a data-toggle="tab" href="#kids">Kids</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div id="new" class="tab-pane fade in active" v-for="(item,index) in featurelist" :key="index">
+                                <div id="new" class="tab-pane fade in active">
                                     <div class="tab-carousel">
-                                        <div class="col-md-12" v-for="(ztem,index) in item.list" :key="index">
+                                        <div class="col-md-12" v-for="(item,index) in productList[0].list" :key="index">
                                             <!-- single-product-start -->
                                             <div class="single-product">
                                                 <div class="single-product-img">
-                                                    <a href="#"><img :src="ztem.img" alt="" /></a>
+                                                    <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
                                                     <span class="sale-box">
                                                             <span class="sale">Sale</span>
-                                                    </span>
-                                                    <span class="new-box">
-                                                            <span class="new">New</span>
                                                     </span>
                                                 </div>
                                                 <div class="single-product-content">
                                                     <div class="product-title">
-                                                        <h5><a href="#">{{ztem.title}}</a></h5>
+                                                        <h5><a href="#">{{item.name}}</a></h5>
                                                     </div>
                                                     <div class="rating">
-                                                        <div class="star star-on"></div>
-                                                        <div class="star star-on"></div>
-                                                        <div class="star star-on"></div>
-                                                        <div class="star star-on"></div>
-                                                        <div class="star"></div>
+                                                        <div class="star star-on" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
                                                     </div>
                                                     <div class="price-box">
-                                                        <span class="price">£{{ztem.price}}</span>
-                                                        <span class="old-price">£{{ztem.oldPrice}}</span>
-                                                    </div>
-                                                    <div class="product-action">
-                                                        <button class="btn btn-default add-cart" title="add to cart">Add to cart</button>
-                                                        <a class="add-wishlist" href="#" title="add to wishlist"><i class="fa fa-heart"></i></a>
-                                                        <a class="quick-view" href="#" title="quick view" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a>
+                                                        <span class="price">£{{item.price}}</span>
+                                                        <span class="old-price">£{{item.oldPrice}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,42 +89,34 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="section-heading">
-                            <h3>new product</h3>
+                            <h3>{{productList[1].title}}</h3>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="new-product wow fadeIn" data-wow-duration=".5s" data-wow-delay=".5s">
                         <div class="new-carousel">
-                            <div class="col-md-12" v-for="(item,index) in productList" :key="index">
+                            <div class="col-md-12" v-for="(item,index) in productList[1].list" :key="index">
                                 <!-- single-product-start -->
                                 <div class="single-product">
                                     <div class="single-product-img">
-                                        <a href="#"><img :src="item.img" alt="" /></a>
+                                        <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
                                         <span class="new-box">
                                                 <span class="new">New</span>
                                         </span>
                                     </div>
                                     <div class="single-product-content">
                                         <div class="product-title">
-                                            <h5><a href="#">{{item.title}}</a></h5>
+                                            <h5><a href="#">{{item.name}}</a></h5>
                                         </div>
                                         <div class="rating">
-                                            <div class="star star-on"></div>
-                                            <div class="star star-on"></div>
-                                            <div class="star star-on"></div>
-                                            <div class="star star-on"></div>
-                                            <div class="star"></div>
+                                             <div class="star star-on" :class="zndex<=item.star?'star-on':''" v-for="(zndex) in 5 " :key="zndex"></div>
                                         </div>
                                         <div class="price-box">
                                             <span class="price">£{{item.price}}</span>
                                             <span class="old-price">£{{item.oldPrice}}</span>
                                         </div>
-                                        <div class="product-action">
-                                            <button class="btn btn-default add-cart" title="add to cart">Add to cart</button>
-                                            <a class="add-wishlist" href="#" title="add to wishlist"><i class="fa fa-heart"></i></a>
-                                            <a class="quick-view" href="#" title="quick view" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i></a>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                                 <!-- single-product-end -->
@@ -524,7 +499,6 @@ if (process.browser) {
     // 在这里根据环境引入wow.js
     var { WOW } = require("wowjs");
 }
-
 export default {
     components: {
       // Product,
@@ -577,43 +551,37 @@ export default {
                 }],
             }
           ],
-          productList:[{
-            title:'Dictum',
-            name:'',
-            img:'/img/singlepro/9.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/5.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/10.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-        },{
-            title:'Dictum',
-            name:'',
-            img:'img/singlepro/44.jpg',
-            price:'7.00',
-            oldPrice:'5.00'
-          }]
+        //   productList:[],
+          imageUrl: process.env.IMAGE_URL
       }
     },
     mounted() {
-        if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
-            new WOW({}).init();
-        }
+        new WOW({}).init();
+        // this.getProductList();
     },
+    async asyncData({ $axios }) {
+            const res = await $axios.post(`/public/homepageList`)
+            let productList = res.data.data.list;
+            return {productList};
+        },
+    created() {},
+    methods:{
+        getProductList(){
+            this.$axios.post(`/public/homepageList`)
+            .then(res=>{
+                console.log('res=>',res);
+                this.productList = res.data.data.list;
+            })      
+        },
+    }
 }
 </script>
 
 <style lang="scss" scoped>
 //banner-area-1
+.single-product .single-product-img{
+    height:300px;
+}
 .mar-15 {
     margin-top: 15px;
 }

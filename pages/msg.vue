@@ -3,15 +3,15 @@
        <div class="main-view container">
            <div class="table">
                <div class="tab-title">
-                   <div class="num">序号</div>
-                   <div class="tab-col">标题</div>
-                   <div class="time">时间</div>
+                   <div class="num">serial number</div>
+                   <div class="tab-col">title</div>
+                   <div class="time">time</div>
                </div>
                <div class="tab-content">
-                   <div class="list" v-for="(item,index) in msgDataList" :key="index">
-                        <div class="num">{{index+1}}</div>
+                   <div class="list quick-view" v-for="(item,index) in msgDataList" :key="index" @click="msgDetails(item)"  data-toggle="modal" data-target="#myModal">
+                        <div class="num">{{(pageNum-1)*pageSize+index+1}}</div>
                         <div class="tab-col">{{item.title}}</div>
-                        <div class="time">{{item.time}}</div>
+                        <div class="time">{{item.updateTime}}</div>
                    </div>
                </div>
             </div>
@@ -19,78 +19,178 @@
                 <nav aria-label="Page navigation">
                     <ul class="pagination">
                         <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
+                            <a href="javascript:void(0)" aria-label="Previous" @click="prePageNum">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
                         </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
+                        <li v-for="(item,index) in pageNumList" :key="index" :class="pageIndex==item?'active':''" >
+                            <a href="javascript:void(0)"   @click="selectPageNum(item)">{{item}}</a>
+                        </li>
                         <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
+                            <a href="javascript:void(0)" aria-label="Next" @click="nextPageNum">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
                         </li>
                     </ul>
                </nav>
            </div>
        </div>
+       <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span>{{details.title}}</span>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="product-details">
+                            <div class="container">
+                                <div class="row" style="min-height:300px;max-height:500px">
+                                      {{details.content}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
    </div>
 </template>
 
 <script>
-   // import 《组件名称》 from '《组件路径》';
-
     export default {
         components: {},
         data() {
         //这里存放数据
             return {
-                msgDataList:[{
-                    id:'',
-                    title:'这是一条消息提示~~',
-                    time:'2018-06-55 42:22:22',
-                    cont:''
-                },{
-                    id:'',
-                    title:'这是一条消息提示~~',
-                    time:'2018-06-55 42:22:22',
-                    cont:''
-                },{
-                    id:'',
-                    title:'这是一条消息提示~~',
-                    time:'2018-06-55 42:22:22',
-                    cont:''
-                },{
-                    id:'',
-                    title:'这是一条消息提示~~',
-                    time:'2018-06-55 42:22:22',
-                    cont:''
-                },{
-                    id:'',
-                    title:'这是一条消息提示~~',
-                    time:'2018-06-55 42:22:22',
-                    cont:''
-                }]
+                pageSize:10,
+                pageNum:1,
+                // msgDataList:[],
+                // pageNumList:[],
+                pageIndex:1,
+                details:{}
+                // total:''
             };
         },
         //监听属性 类似于data概念
         computed: {},
+        created() {},
         //监控data中的数据变化
         watch: {},
+        async asyncData({ $axios }) {
+            let data = {
+                pageSize:10,
+                pageNum:1
+            };
+            let pageNumList =[];
+            let total ='';
+            const resultData = await $axios.post(`/public/messageList`, data)
+            let msgDataList = resultData.data.data.list;
+                total = resultData.data.data.total;
+                    let num = Math.ceil(total/9)
+                    if(pageNumList.length==0){
+                        if(num>=3){
+                            num = 3;
+                        }
+                        for(let i =0;i<num;i++){
+                            pageNumList.push(i+1)
+                        }
+                    }
+            return {msgDataList,pageNumList,total};
+        },
         //方法集合
         methods: {
-        
+            msgDetails(item){
+                console.log(item)
+                this.details = item
+            },
+            getMsgList(){
+                let data = {
+                    pageSize:this.pageSize,
+                    pageNum:this.pageNum
+                };
+                this.$axios.post(`/public/messageList`, data)
+                .then(res=>{
+                    this.msgDataList = res.data.data.list;
+                    this.total = res.data.data.total;
+                    let num =   Math.ceil(res.data.data.total/this.pageSize)
+                    if(this.pageNumList.length==0){
+                        if(num>=5){
+                            num = 5;
+                        }
+                        for(let i=0;i<num;i++){
+                            this.pageNumList.push(i+1)
+                        }
+                    }
+                })      
+            },
+            selectPageNum(num){
+                this.pageNum = num;
+                this.pageIndex = num;
+                this.getMsgList();
+            },
+            prePageNum(){
+                let num = this.pageNumList[0];
+                if(num <= 1){
+                    this.pageNum = this.pageNum-1;
+                    this.pageIndex = this.pageIndex-1;
+                    this.getMsgList();
+                    return false
+                }else{
+                    num--
+                    this.pageNumList.unshift(num);
+                    this.pageNumList.pop()
+                    this.pageNum = num;
+                    this.pageIndex = num;
+                    this.getMsgList();
+                }
+            },
+            nextPageNum(){
+                let num = this.pageNumList[this.pageNumList.length-1];
+                if(num*this.pageSize >= this.total){
+                    this.pageNum = this.pageNum+1;
+                    this.pageIndex = this.pageIndex+1;
+                    this.getMsgList();
+                    return false
+                }else{
+                    num++
+                    this.pageNumList.push(num);
+                    this.pageNumList.shift()
+                    this.pageNum = num;
+                    this.pageIndex = num;
+                    this.getMsgList();
+                }
+            }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
-        
+            // this.getMsgList();
         },
     }
 </script>
 <style lang='scss' scoped>
+    #myModal{
+        z-index: 99999999;
+    }
+    @media screen and (max-width: 768px) {
+        .modal-dialog{
+            width: 500px!important;
+        }
+        .modal-content{
+            margin: 0 auto;
+        }
+    }
+    @media (min-width: 768px) and (max-width: 991px){
+        .modal-dialog{
+            width:800px!important;
+        }
+        .modal-content {
+           margin: 0 auto;
+        }
+    }
+        
+
     .table{
         width: 100%;
         height: auto;
@@ -109,6 +209,8 @@
                 width: 100%;
                 border-bottom:2px solid #dfdddc;
                 padding: 10px;
+                text-align: center;
+                cursor: pointer;
             }
         }
         .tab-title,.list{

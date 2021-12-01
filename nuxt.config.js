@@ -1,3 +1,5 @@
+const env = require('./env')
+
 module.exports = {
   mode: 'universal',
   /*
@@ -81,6 +83,8 @@ module.exports = {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: env[process.env.MODE].BASE_URL,
+    browserBaseURL: env[process.env.MODE].BASE_URL,
   },
   /*
   ** Build configuration
@@ -103,5 +107,8 @@ module.exports = {
     extractCSS: {
       allChunks: true
     }
+  },
+  env: {
+    IMAGE_URL: env[process.env.MODE].BASE_URL + '/public'
   }
 }

@@ -30,21 +30,19 @@
                                 Leave a Message
                             </h3>
                             <div class="row">
-                                <form action="mail.php" method="post">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="text" placeholder="Name (required)" />
+                                        <input type="text" v-model="name"  placeholder="Name (required)" />
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" placeholder="Email (required)" />
+                                        <input type="email" v-model="email" placeholder="Email (required)" />
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <input type="text" placeholder="Subject" />
+                                        <input type="text" v-model="subject"  placeholder="Subject" />
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <textarea placeholder="Message" id="message" cols="30" rows="10"></textarea>
-                                        <input type="submit" value="Submit Form" />
+                                        <textarea placeholder="Message" v-model="message" id="message" cols="30" rows="10"></textarea>
+                                        <div class="submit" @click="submit">submit</div>
                                     </div>
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -77,6 +75,13 @@
             </div>
         </div>
         <!-- contact-area-end -->
+        <div v-if="isHidden">
+            <div class="prompt-box success">
+                <!-- <div class="prompt-success-icon"></div> -->
+                <div class= "msgStyle">{{msgTips}}</div>
+                <div class="prompt-close-btn" @click="close()">X</div>
+            </div>
+        </div>
    </div>
 </template>
 
@@ -88,7 +93,12 @@
         data() {
         //这里存放数据
             return {
-                
+                name:'',
+                email:'',
+                subject:'',
+                message:'',
+                msgTips:'提交成功，我们将尽快与您取得联系！',
+                isHidden:false
             };
         },
         //监听属性 类似于data概念
@@ -97,15 +107,120 @@
         watch: {},
         //方法集合
         methods: {
-            
+            async submit(){
+                if(this.name==''||this.email==''){
+                    return false
+                }
+                const res = await this.$axios.post(`http://localhost:3000/sendmail`, {
+                  subject: this.subject,
+                  html: `
+                    <p><strong>发信人姓名：</strong></p>
+                    <p>${this.name}</p>
+                    <p><strong>发信人邮箱：</strong></p>
+                    <p>${this.email}</p>
+                    <p><strong>发信人留言：</strong></p>
+                    <p>${this.message}</p>
+                  `
+                })
+                if(res.data.error_code === 200) {
+                    // this.$bvToast.toast('提交成功，我们将尽快与您取得联系！');
+                    this.isHidden = true;
+                    setTimeout(()=>{
+                        this.isHidden = false
+                    }, 2000)
+                }
+            },
+            close(){
+                 this.isHidden = false;
+            }
         },
         //生命周期 - 挂载完成（可以访问DOM元素）   
         mounted() {
-            
+           
         },
     }
 </script>
 <style lang='scss' scoped>
+.prompt-box {
+    width:600px;
+    min-height:36px;
+    line-height:36px;
+    position:fixed;
+    left:50%;
+    top:20px;
+    margin-left:-320px;
+    z-index:99999;
+    border-radius:2px;
+    padding:0 25px;
+    color:#666;
+}
+.prompt-box.warning {
+    font-weight:bold;
+    border: 1px solid #FCD037;
+}
+.prompt-box.success {
+    font-weight:bold;
+    border: 1px solid #e1f3d8;
+    color: #67c23a;
+    background-color: #e1f3d8;
+}
+.prompt-box.notify {
+    font-weight:bold;
+    border: 1px solid #FCD037;
+}
+.prompt-close-btn {
+    // background:url("/images/closebtn.svg") no-repeat center;
+    width:14px;
+    height:14px;
+    position:absolute;
+    right:20px;
+    top:0;
+    cursor:pointer;
+    color: #909399;
+}
+.msgStyle {
+    display:inline-block;
+    vertical-align:middle;
+    max-width:500px;
+    text-align:left;
+}
+.prompt-warning-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+}
+.prompt-success-icon {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    vertical-align: middle;
+}
+.prompt-notify-icon {
+    display: inline-block;
+    width: 26px;
+    height: 25px;
+    vertical-align: middle;
+}
+.prompt-hidden {
+    display:none;
+}
+.contact-form .submit{
+    width: 120px;
+    line-height: 40px;
+    text-align: center;
+    background: #252525 none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    transition: all 0.3s ease 0s;
+}
 /*------------------------------
 17. contact
 ------------------------------*/
