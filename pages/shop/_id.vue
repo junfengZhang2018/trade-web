@@ -368,8 +368,7 @@
 
    </div>
 </template>
-<script src="@/static/js/vendor/vendor.min.css"></script>
-<script src="@/static/js/plugins/plugins.min.css"></script>
+
 <script>
 import { product } from '@/utils/mock.js'
 
@@ -393,10 +392,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/styles/variables.scss';
 @import "@/static/css/vendor/vendor.min.css";
 @import "@/static/css/plugins/plugins.min.css";
-@import "@/static/css/style.min";
+@import "@/static/css/style.min.css";
 .title {
   font-size: 16px;
   font-weight: bold;
@@ -406,8 +404,5 @@ export default {
   font-size: 16px;
   line-height: 2;
   color: #2a333c;
-}
-.breadcrumb a {
-  color: $theme-color;
 }
 </style>
