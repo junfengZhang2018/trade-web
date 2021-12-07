@@ -79,7 +79,7 @@
                                         <!-- Tab panes -->
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane active fade in" id="gried_view">
-                                                <div class="col-md-4 col-sm-6 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index">
+                                                <div class="col-md-4 col-sm-6 col-xs-12 top-mar" v-for="(item,index) in productList"  :key="index" @click="handleDetail(item)">
                                                     <!-- single-product-start -->
                                                     <div class="single-product">
                                                         <div class="single-product-img">
@@ -430,8 +430,13 @@
                     this.pageNumList.shift()
                     this.getProductList();
                 }
-            }
+            },
+            handleDetail(id) {
+                this.$router.push(`/shop/${id}`)
+                },
         },
+        // 点击查看详情
+    
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
             // this.getProductList();

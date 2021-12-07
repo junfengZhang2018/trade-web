@@ -20,7 +20,7 @@
         </div>
         <!-- heading-banner-end -->
         <!-- breadcrumb-area end --><!-- Product Details Area Start -->
-        <div class="product-details-area pt-100px pb-100px">
+        <div class="product-details-area pt-100px pb-100px" style="@import">
             <div class="container">
                 <div class="row">
                 <div class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
@@ -368,64 +368,46 @@
 
    </div>
 </template>
-
+<script src="@/static/js/vendor/vendor.min.css"></script>
+<script src="@/static/js/plugins/plugins.min.css"></script>
 <script>
-    
-    export default {
-        components: {},
-        data() {
-        //这里存放数据
-            return {
-                pageSize:2,
-                pageNum:1,
-                // productList:[],
-                // pageNumList:[],
-                pageIndex:1,
-                // total:'',
-                imageUrl: process.env.IMAGE_URL,
-                details:{}
-            };
-        },
-        async asyncData({ $axios }) {
-            let data = {
-                pageSize:2,
-                pageNum:1
-            };
-            let pageNumList =[];
-            let total ='';
-            const resultData = await $axios.post(`/public/productList`, data)
-            let productList = resultData.data.data.list;
-                total = resultData.data.data.total;
-                    let num = Math.ceil(total/2)
-                    if(pageNumList.length==0){
-                        if(num>=3){
-                            num = 3;
-                        }
-                        for(let i =0;i<num;i++){
-                            pageNumList.push(i+1)
-                        }
-                    }
-            return {productList,pageNumList,total};
-        },
-        created() {
-            
-        },
-        //监听属性 类似于data概念
-        computed: {},
-        //监控data中的数据变化
-        watch: {},
-        //方法集合
-        methods: {
-        },
-        //生命周期 - 挂载完成（可以访问DOM元素）
-        mounted() {
-            // this.getProductList();
-        },
-    }
-</script>
-<style lang='scss' scoped>
-/*------------------------------
-shop
-------------------------------*/
+import { product } from '@/utils/mock.js'
 
+if (process.browser) { // 在这里根据环境引入wow.js
+  var {WOW} = require('wowjs')
+}
+
+export default {
+  computed: {
+    info() {
+      const index = this.$route.params.id
+      return product[index - 1]
+    }
+  },
+  mounted() {
+    if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
+      new WOW({}).init()
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+@import '@/assets/styles/variables.scss';
+@import "@/static/css/vendor/vendor.min.css";
+@import "@/static/css/plugins/plugins.min.css";
+@import "@/static/css/style.min";
+.title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #2a333c;
+}
+.detail {
+  font-size: 16px;
+  line-height: 2;
+  color: #2a333c;
+}
+.breadcrumb a {
+  color: $theme-color;
+}
 </style>
