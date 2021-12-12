@@ -21,11 +21,11 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:400,300,700,900,100' },
     ],
     script: [
-      { src: '/js/jquery-1.12.0.min.js' },
-      { src: '/js/bootstrap.min.js' },
-      { src: '/js/jquery.meanmenu.js' },
-      { src: '/js/element.js' },
-      { src: '/js/main.js' },
+      { src: '/js/jquery-1.12.0.min.js', async: true},
+      { src: '/js/bootstrap.min.js', async: true },
+      { src: '/js/jquery.meanmenu.js', async: true },
+      { src: '/js/element.js', async: true },
+      { src: '/js/main.js', async: true },
     ]
   },
   // server: {

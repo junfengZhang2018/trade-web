@@ -431,8 +431,9 @@
                     this.getProductList();
                 }
             },
-            handleDetail(id) {
-                this.$router.push(`/shop/${id}`)
+            handleDetail(item) {
+                console.log(item)
+                this.$router.push(`/shop/${item.id}`)
                 },
         },
         // 点击查看详情
