@@ -132,7 +132,13 @@ if (process.browser) { // 在这里根据环境引入wow.js
 export default {
     head(){
         return{
-            script:[{src:'/js/jquery.min.js'},{src:'/js/vendor/vendor.min.js'},{src:'/js/jquery-ui.min.js'},{src:'/js/plugins/plugins.min.js'},{src:'/js/mainnew.js'}]
+            script:[
+                {src:'/js/jquery.min.js'},
+                // {src:'/js/vendor/vendor.min.js'},
+                {src:'/js/jquery-ui.min.js'},
+                {src:'/js/plugins/plugins.min.js', defer: true},
+                {src:'/js/mainnew.js', defer: true}
+            ]
         }
     },
     async asyncData({params,$axios}) {
@@ -159,32 +165,32 @@ export default {
 
             };
         },
-  computed: {
-    info() {
-      const index = this.$route.params.id
-      return index
-    }
-  },
-  created(){
-      if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
-        // $("script[src='/js/jquery-1.12.0.min.js']").remove()
-        // $("script[src='/js/bootstrap.min.js']").remove()
-        // console.log($().jquery)
-        // jQuery.noConflict(true)
-        // console.log($().jquery)
-    }
-  },
-  mounted() {
-    if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
-      new WOW({}).init()
-
-    }
-  },
-  methods:{
-      changeTabs(index){
-          this.tabIndex =index
+    computed: {
+      info() {
+        const index = this.$route.params.id
+        return index
       }
-  }
+    },
+    created(){
+        if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
+        //   $("script[src='/js/jquery-1.12.0.min.js']").remove()
+        //   $("script[src='/js/bootstrap.min.js']").remove()
+          // console.log($().jquery)
+          // jQuery.noConflict(true)
+          // console.log($().jquery)
+      }
+    },
+    mounted() {
+      if (process.browser) {  // 在页面mounted生命周期里面 根据环境实例化WOW
+        new WOW({}).init()
+
+      }
+    },
+    methods:{
+        changeTabs(index){
+            this.tabIndex =index
+        }
+    }
 }
 </script>
 
