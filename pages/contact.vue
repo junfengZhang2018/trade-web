@@ -109,6 +109,11 @@
         methods: {
             async submit(){
                 if(this.name==''||this.email==''){
+                    this.isHidden = true;
+                    this.msgTips= '请填写姓名或者邮箱'
+                    setTimeout(()=>{
+                        this.isHidden = false
+                    }, 2000)
                     return false
                 }
                 const res = await this.$axios.post(`http://localhost:3000/sendmail`, {
@@ -128,6 +133,13 @@
                     setTimeout(()=>{
                         this.isHidden = false
                     }, 2000)
+                }else{
+                     this.isHidden = true;
+                    this.msgTips= '提交失败，请重新提交。'
+                    setTimeout(()=>{
+                        this.isHidden = false
+                    }, 2000)
+                    return false
                 }
             },
             close(){
