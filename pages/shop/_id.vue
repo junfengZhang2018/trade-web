@@ -26,16 +26,21 @@
                     <div class="product-details-img product-details-tab product-details-tab-2 product-details-tab-3 d-flex">
                     <div class="swiper-container zoom-thumbs-2 align-self-start ml-15px">
                         <div class="swiper-wrapper">
-                        <div class="swiper-slide"><img class="img-responsive m-auto" v-if="shopData.image" :src="imageUrl+shopData.image" alt=""></div>
-                        <div class="swiper-slide"><img class="img-responsive m-auto" v-if="shopData.detailImage1" :src="imageUrl+shopData.detailImage1" alt=""></div>
-                        <div class="swiper-slide"><img class="img-responsive m-auto" v-if="shopData.detailImage2" :src="imageUrl+shopData.detailImage2" alt=""></div>
-                        <div class="swiper-slide"><img class="img-responsive m-auto" v-if="shopData.detailImage3" :src="imageUrl+shopData.detailImage3" alt=""></div>
-                        <div class="swiper-slide"><img class="img-responsive m-auto" v-if="shopData.detailImage4" :src="imageUrl+shopData.detailImage4" alt=""></div>
+                        <!-- <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div>
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div> -->
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.image" :src="imageUrl+shopData.image" alt=""></div>
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage1" :src="imageUrl+shopData.detailImage1" alt=""></div>
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage2" :src="imageUrl+shopData.detailImage2" alt=""></div>
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage3" :src="imageUrl+shopData.detailImage3" alt=""></div>
+                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage4" :src="imageUrl+shopData.detailImage4" alt=""></div>
                         </div>
                     </div>
+                        
                     <!-- Swiper -->
                     <div class="swiper-container zoom-top-2 align-self-start">
                         <div class="swiper-wrapper">
+                         <!-- <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div>
+                          <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div> -->
                         <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.image" :src="imageUrl+shopData.image" alt=""></div>
                         <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage1" :src="imageUrl+shopData.detailImage1" alt=""></div>
                         <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage2" :src="imageUrl+shopData.detailImage2" alt=""></div>
@@ -136,7 +141,8 @@ export default {
                 {src:'/js/jquery.min.js'},
                 // {src:'/js/vendor/vendor.min.js'},
                 {src:'/js/jquery-ui.min.js'},
-                {src:'/js/plugins/plugins.min.js', defer: true},
+                // {src:'/js/plugins/plugins.min.js', defer: true},
+                {src:'/js/plugins/Zoom.js', defer: true},
                 {src:'/js/mainnew.js', defer: true}
             ]
         }
@@ -148,7 +154,8 @@ export default {
         }
         const resultData = await $axios.post(`/public/productDetail`, data)
         let shopData = resultData.data.data;
-        return {shopData}
+        let r_url = process.env.IMAGE_URL+shopData.image
+        return {shopData,r_url}
     },
     data() {
         //这里存放数据
@@ -162,7 +169,27 @@ export default {
                 }],
                 tabIndex:1,
                 imageUrl: process.env.IMAGE_URL,
-
+                topStyle: { transform: "" },
+                r_img: {},
+                topShow: false,
+                rShow: false,
+                shopData: {
+                        "createTime": "2021-09-07 16:49:51",
+                        "updateTime": "2021-11-30 16:50:54",
+                        "id": 14,
+                        "name": "发动机和就",
+                        "desc": "饭店附近开了多久",
+                        "image": "/product/F7050D0F-54D1-4d44-BEED-3760ED33EC56_1638258199858.png",
+                        "oldPrice": "99",
+                        "price": "66",
+                        "star": 0,
+                        "homePageShow": 0,
+                        "information": "",
+                        "detailImage1": "/product/F7050D0F-54D1-4d44-BEED-3760ED33EC56_1638262251051.png",
+                        "detailImage2": null,
+                        "detailImage3": null,
+                        "detailImage4": null
+                    }
             };
         },
     computed: {
@@ -189,7 +216,7 @@ export default {
     methods:{
         changeTabs(index){
             this.tabIndex =index
-        }
+        },
     }
 }
 </script>
@@ -225,4 +252,10 @@ export default {
       width: 489px;
       height: 489px;
   }
+    .smallImg{
+        min-height: 70px;
+    }
+    .smallImg img{
+        min-height: 60px;
+    }
 </style>
