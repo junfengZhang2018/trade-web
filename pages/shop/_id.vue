@@ -258,4 +258,56 @@ export default {
     .smallImg img{
         min-height: 60px;
     }
+.shop-breadcrumb {
+    display: inline-block;
+    float: right;
+}
+.shop-breadcrumb ul {} .shop-breadcrumb ul li {
+    display: inline-block;
+}
+.shop-breadcrumb ul li a {
+    border: 1px solid #ddd;
+    color: #444;
+    display: block;
+    height: 25px;
+    line-height: 21px;
+    text-align: center;
+    text-decoration: none;
+    width: 25px;
+}
+.shop-breadcrumb ul li a:hover,
+.shop-breadcrumb ul li.active a {
+    background: #ff6464 none repeat scroll 0 0;
+    border-color: #ff6464;
+    color: #fff;
+}
+.shop-area .single-product:hover {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+}
+.breadcrumb {
+    background: transparent none repeat scroll 0 0;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 0;
+    padding: 110px 0;
+    text-align: center;
+    text-transform: uppercase;
+    justify-content: center;
+}
+.breadcrumb > a {
+    color: white;
+    display: inline-block;
+    font-size: 18px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    z-index: 99;
+}
 </style>
