@@ -129,6 +129,7 @@
                 })
                 if(res.data.error_code === 200) {
                     // this.$bvToast.toast('提交成功，我们将尽快与您取得联系！');
+                     this.msgTips= '提交成功，我们将尽快与您取得联系！'
                     this.isHidden = true;
                     setTimeout(()=>{
                         this.isHidden = false

@@ -438,13 +438,14 @@
             },
             handleDetail(item) {
                 location.href = `/shop/${item.id}`;
-            },
+            }
         },
         // 点击查看详情
     
         //生命周期 - 挂载完成（可以访问DOM元素）
         mounted() {
             // this.getProductList();
+        //    console.log(this)
         },
     }
 </script>

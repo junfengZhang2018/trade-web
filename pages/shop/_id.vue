@@ -28,7 +28,7 @@
                         <div class="swiper-wrapper">
                         <!-- <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div>
                         <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div> -->
-                        <div class="swiper-slide smallImg"  v-if="shopData.image"><img class="img-responsive m-auto" :src="imageUrl+shopData.image" alt=""></div>
+                        <div class="swiper-slide smallImg" v-if="shopData.image"><img class="img-responsive m-auto" :src="imageUrl+shopData.image" alt=""></div>
                         <div class="swiper-slide smallImg" v-if="shopData.detailImage1"><img class="img-responsive m-auto" :src="imageUrl+shopData.detailImage1" alt=""></div>
                         <div class="swiper-slide smallImg" v-if="shopData.detailImage2"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage2" alt=""></div>
                         <div class="swiper-slide smallImg" v-if="shopData.detailImage3"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage3" alt=""></div>

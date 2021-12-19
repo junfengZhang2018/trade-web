@@ -64,7 +64,7 @@
         data() {
         //这里存放数据
             return {
-                pageSize:3,
+                pageSize:9,
                 // pageNum:1,
                 // msgDataList:[],
                 // pageNumList:[],

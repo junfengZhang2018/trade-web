@@ -51,7 +51,7 @@
                             <div class="tab-content">
                                 <div id="new" class="tab-pane fade in active">
                                     <div class="tab-carousel">
-                                        <div class="col-md-12" v-for="(item,index) in productList[0].list" :key="index">
+                                        <div class="col-md-12" v-for="(item,index) in productList[0].list" :key="index" @click="handleDetail(item)">
                                             <!-- single-product-start -->
                                             <div class="single-product">
                                                 <div class="single-product-img">
@@ -96,7 +96,7 @@
                 <div class="row">
                     <div class="new-product wow fadeIn" data-wow-duration=".5s" data-wow-delay=".5s">
                         <div class="new-carousel">
-                            <div class="col-md-12" v-for="(item,index) in productList[1].list" :key="index">
+                            <div class="col-md-12" v-for="(item,index) in productList[1].list" :key="index" @click="handleDetail(item)">
                                 <!-- single-product-start -->
                                 <div class="single-product">
                                     <div class="single-product-img">
@@ -573,6 +573,9 @@ export default {
                 this.productList = res.data.data.list;
             })      
         },
+        handleDetail(item) {
+            location.href = `/shop/${item.id}`;
+        }
     }
 }
 </script>
