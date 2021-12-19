@@ -55,7 +55,7 @@
                                             <!-- single-product-start -->
                                             <div class="single-product">
                                                 <div class="single-product-img">
-                                                    <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
+                                                    <a href="javascript:void(0)"><img :src="imageUrl+item.image" alt="" /></a>
                                                     <span class="sale-box">
                                                             <span class="sale">Sale</span>
                                                     </span>
@@ -100,7 +100,7 @@
                                 <!-- single-product-start -->
                                 <div class="single-product">
                                     <div class="single-product-img">
-                                        <a href="#"><img :src="imageUrl+item.image" alt="" /></a>
+                                        <a href="javascript:void(0)"><img :src="imageUrl+item.image" alt="" /></a>
                                         <span class="new-box">
                                                 <span class="new">New</span>
                                         </span>
