@@ -325,7 +325,7 @@
         data() {
         //这里存放数据
             return {
-                pageSize:2,
+                pageSize:9,
                 // pageNum:1,
                 // productList:[],
                 // pageNumList:[],
@@ -337,7 +337,7 @@
         },
         async asyncData({query,$axios}) {
             let data = {
-                pageSize:2,
+                pageSize:9,
                 pageNum:query.pageNum||1
             };
             let pageNumList =[];
@@ -347,7 +347,7 @@
             const resultData = await $axios.post(`/public/productList`, data)
             let productList = resultData.data.data.list;
                 total = resultData.data.data.total;
-                    let num = Math.ceil(total/2)
+                    let num = Math.ceil(total/9)
                     if(pageNumList.length==0){
                         if(num>=3){
                             num = 3;

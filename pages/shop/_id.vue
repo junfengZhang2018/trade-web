@@ -252,11 +252,16 @@ export default {
       width: 489px;
       height: 489px;
   }
+  .swiper-slide.bigImage img{
+      width: 489px;
+      height: 489px;
+  }
     .smallImg{
-        min-height: 70px;
+        min-height: 110px;
     }
     .smallImg img{
-        min-height: 60px;
+        min-height:100px;
+        height: 100px;
     }
 .shop-breadcrumb {
     display: inline-block;
