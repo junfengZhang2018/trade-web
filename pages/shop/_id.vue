@@ -28,11 +28,11 @@
                         <div class="swiper-wrapper">
                         <!-- <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div>
                         <div class="swiper-slide smallImg"><img class="img-responsive m-auto"  src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div> -->
-                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.image" :src="imageUrl+shopData.image" alt=""></div>
-                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage1" :src="imageUrl+shopData.detailImage1" alt=""></div>
-                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage2" :src="imageUrl+shopData.detailImage2" alt=""></div>
-                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage3" :src="imageUrl+shopData.detailImage3" alt=""></div>
-                        <div class="swiper-slide smallImg"><img class="img-responsive m-auto" v-if="shopData.detailImage4" :src="imageUrl+shopData.detailImage4" alt=""></div>
+                        <div class="swiper-slide smallImg"  v-if="shopData.image"><img class="img-responsive m-auto" :src="imageUrl+shopData.image" alt=""></div>
+                        <div class="swiper-slide smallImg" v-if="shopData.detailImage1"><img class="img-responsive m-auto" :src="imageUrl+shopData.detailImage1" alt=""></div>
+                        <div class="swiper-slide smallImg" v-if="shopData.detailImage2"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage2" alt=""></div>
+                        <div class="swiper-slide smallImg" v-if="shopData.detailImage3"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage3" alt=""></div>
+                        <div class="swiper-slide smallImg" v-if="shopData.detailImage4"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage4" alt=""></div>
                         </div>
                     </div>
                         
@@ -41,11 +41,11 @@
                         <div class="swiper-wrapper">
                          <!-- <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div>
                           <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" src="/images/coming-soon-bg/coming-soon.jpg" alt=""></div> -->
-                        <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.image" :src="imageUrl+shopData.image" alt=""></div>
-                        <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage1" :src="imageUrl+shopData.detailImage1" alt=""></div>
-                        <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage2" :src="imageUrl+shopData.detailImage2" alt=""></div>
-                        <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage3" :src="imageUrl+shopData.detailImage3" alt=""></div>
-                        <div class="swiper-slide bigImage zoom-image-hover"><img class="img-responsive m-auto" v-if="shopData.detailImage4" :src="imageUrl+shopData.detailImage4" alt=""></div>
+                        <div class="swiper-slide bigImage zoom-image-hover" v-if="shopData.image"><img class="img-responsive m-auto"  :src="imageUrl+shopData.image" alt=""></div>
+                        <div class="swiper-slide bigImage zoom-image-hover" v-if="shopData.detailImage1"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage1" alt=""></div>
+                        <div class="swiper-slide bigImage zoom-image-hover" v-if="shopData.detailImage2"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage2" alt=""></div>
+                        <div class="swiper-slide bigImage zoom-image-hover" v-if="shopData.detailImage3"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage3" alt=""></div>
+                        <div class="swiper-slide bigImage zoom-image-hover" v-if="shopData.detailImage4"><img class="img-responsive m-auto"  :src="imageUrl+shopData.detailImage4" alt=""></div>
                         </div>
                     </div>
                     </div>
@@ -138,9 +138,9 @@ export default {
     head(){
         return{
             script:[
-                {src:'/js/jquery.min.js'},
+                // {src:'/js/jquery.min.js'},
                 // {src:'/js/vendor/vendor.min.js'},
-                {src:'/js/jquery-ui.min.js'},
+                // {src:'/js/jquery-ui.min.js'},
                 // {src:'/js/plugins/plugins.min.js', defer: true},
                 {src:'/js/plugins/Zoom.js', defer: true},
                 {src:'/js/mainnew.js', defer: true}

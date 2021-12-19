@@ -326,22 +326,24 @@
         //这里存放数据
             return {
                 pageSize:2,
-                pageNum:1,
+                // pageNum:1,
                 // productList:[],
                 // pageNumList:[],
-                pageIndex:1,
+                // pageIndex:1,
                 // total:'',
                 imageUrl: process.env.IMAGE_URL,
                 details:{}
             };
         },
-        async asyncData({ $axios }) {
+        async asyncData({query,$axios}) {
             let data = {
                 pageSize:2,
-                pageNum:1
+                pageNum:query.pageNum||1
             };
             let pageNumList =[];
             let total ='';
+            let pageNum = query.pageNum||1;
+            let pageIndex = query.pageNum||1;
             const resultData = await $axios.post(`/public/productList`, data)
             let productList = resultData.data.data.list;
                 total = resultData.data.data.total;
@@ -354,7 +356,8 @@
                             pageNumList.push(i+1)
                         }
                     }
-            return {productList,pageNumList,total};
+                    console.log
+            return {productList,pageNumList,total,pageNum,pageIndex};
         },
         created() {
             
@@ -393,7 +396,8 @@
             selectPageNum(num){
                 this.pageNum = num;
                 this.pageIndex = num;
-                this.getProductList()
+                location.href = `/shop?pageNum=${num}`;
+                // this.getProductList()
             },
             prePageNum(){
                 let num = this.pageNumList[0];
@@ -401,7 +405,8 @@
                     if(this.pageNum>1){
                         this.pageNum = this.pageNum-1;
                         this.pageIndex = this.pageIndex-1;
-                        this.getProductList();
+                        this.selectPageNum(this.pageNum)
+                        // this.getProductList();
                     }
                     return false
                 }else{
@@ -410,25 +415,25 @@
                     this.pageIndex = this.pageIndex-1;
                     this.pageNumList.unshift(num);
                     this.pageNumList.pop()
-                    this.getProductList();
+                    this.selectPageNum(this.pageNum)
                 }
             },
             nextPageNum(){
                 let num = this.pageNumList[this.pageNumList.length-1];
                 if(num*this.pageSize >= this.total){
                     if(this.pageNum*this.pageSize<this.total){
-                        this.pageNum = this.pageNum+1;
-                        this.pageIndex = this.pageIndex+1;
-                        this.getProductList();
+                        this.pageNum = parseInt(this.pageNum)+1;
+                        this.pageIndex = parseInt(this.pageIndex)+1;
+                        this.selectPageNum(this.pageNum)
                     }
                     return false
                 }else{
                     num++
-                    this.pageNum = this.pageNum+1;
-                    this.pageIndex = this.pageIndex+1;
+                    this.pageNum = parseInt(this.pageNum)+1;
+                    this.pageIndex = parseInt(this.pageIndex)+1;
                     this.pageNumList.push(num);
                     this.pageNumList.shift()
-                    this.getProductList();
+                    this.selectPageNum(this.pageNum)
                 }
             },
             handleDetail(item) {

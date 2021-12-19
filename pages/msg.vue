@@ -64,11 +64,11 @@
         data() {
         //这里存放数据
             return {
-                pageSize:10,
-                pageNum:1,
+                pageSize:3,
+                // pageNum:1,
                 // msgDataList:[],
                 // pageNumList:[],
-                pageIndex:1,
+                // pageIndex:1,
                 details:{}
                 // total:''
             };
@@ -78,13 +78,15 @@
         created() {},
         //监控data中的数据变化
         watch: {},
-        async asyncData({ $axios }) {
+        async asyncData({query,$axios }) {
             let data = {
-                pageSize:10,
-                pageNum:1
+                pageSize:9,
+                pageNum:query.prePageNum||1
             };
             let pageNumList =[];
             let total ='';
+            let pageNum = query.pageNum||1;
+            let pageIndex = query.pageNum||1;
             const resultData = await $axios.post(`/public/messageList`, data)
             let msgDataList = resultData.data.data.list;
                 total = resultData.data.data.total;
@@ -97,7 +99,7 @@
                             pageNumList.push(i+1)
                         }
                     }
-            return {msgDataList,pageNumList,total};
+            return {msgDataList,pageNumList,total,pageNum,pageIndex};
         },
         //方法集合
         methods: {
@@ -128,7 +130,7 @@
             selectPageNum(num){
                 this.pageNum = num;
                 this.pageIndex = num;
-                this.getMsgList();
+                location.href = `/msg?pageNum=${num}`;
             },
             prePageNum(){
                 let num = this.pageNumList[0];
@@ -136,7 +138,7 @@
                     if(this.pageNum>1){
                         this.pageNum = this.pageNum-1;
                         this.pageIndex = this.pageIndex-1;
-                        this.getMsgList();
+                        this.selectPageNum(this.pageNum)
                     }
                     return false
                 }else{
@@ -145,25 +147,26 @@
                     this.pageNumList.pop()
                     this.pageNum = this.pageNum-1;
                     this.pageIndex = this.pageIndex-1;
-                    this.getMsgList();
+                    this.selectPageNum(this.pageNum)
                 }
             },
             nextPageNum(){
                 let num = this.pageNumList[this.pageNumList.length-1];
                 if(num*this.pageSize >= this.total){
                     if(this.pageNum*this.pageSize<this.total){
-                        this.pageNum = this.pageNum+1;
-                        this.pageIndex = this.pageIndex+1;
-                        this.getMsgList();
+                        this.pageNum = parseInt(this.pageNum)+1;
+                        this.pageIndex = parseInt(this.pageIndex)+1;
+                        this.selectPageNum(this.pageNum)
+
                     }
                     return false
                 }else{
                     num++
                     this.pageNumList.push(num);
                     this.pageNumList.shift();
-                     this.pageNum = this.pageNum+1;
-                    this.pageIndex = this.pageIndex+1;
-                    this.getMsgList();
+                     this.pageNum = parseInt(this.pageNum)+1;
+                    this.pageIndex = parseInt(this.pageIndex)+1;
+                    this.selectPageNum(this.pageNum)
                 }
             }
         },
